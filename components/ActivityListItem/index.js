@@ -25,7 +25,8 @@ const StyledItem = styled.li`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  height: 160px;
+  height: 147px;
+  width: 320px;
   gap: 16px;
   border-radius: 8px;
   padding: 8px 32px;
