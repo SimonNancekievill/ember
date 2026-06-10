@@ -1,11 +1,13 @@
 import ActivityListItem from "../ActivityListItem";
 
 export default function ActivityList({ entries }) {
-  const { activities } = entries;
   return (
     <ul>
-      {activities.map((activity) => {
-        <ActivityListItem activity={activity} />;
+      {entries.map((entry) => {
+        const { activities } = entry;
+        return activities.map((activity) => {
+          return <ActivityListItem activity={activity} key={activity.name} />;
+        });
       })}
     </ul>
   );

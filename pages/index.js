@@ -9,9 +9,10 @@ export default function HomePage() {
   if (!entries || error) {
     return <h1>Oops… something went wrong.</h1>;
   }
+
   return (
     <>
-      <h1>Hello from Next.js</h1>
+      <h1>Good to see you!</h1>
       <ActivityList entries={entries} />
     </>
   );
