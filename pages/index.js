@@ -2,6 +2,7 @@ import ActivityList from "@/components/ActivityList";
 import useSWR from "swr";
 import Button from "@/components/Button";
 import styled from "styled-components";
+import Form from "@/components/Form";
 
 export default function HomePage() {
   const { data: entries, isLoading, error } = useSWR("/api/entries");
@@ -20,6 +21,7 @@ export default function HomePage() {
           Add new
         </Button>
       </ButtonWrapper>
+      <Form />
       <ActivityList entries={entries} />
     </>
   );
