@@ -5,9 +5,9 @@ export default function ActivityListItem({ activity }) {
   return (
     <StyledItem key={activity.name}>
       <h2>{activity.name}</h2>
-      <section>
+      <StyledSection>
         <p>{activity.category}</p>
-      </section>
+      </StyledSection>
     </StyledItem>
   );
 }
@@ -22,4 +22,10 @@ const StyledItem = styled.li`
   border-radius: 8px;
   padding: 8px 32px;
   background-color: #fff;
+`;
+
+const StyledSection = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 `;
