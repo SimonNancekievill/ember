@@ -1,0 +1,24 @@
+[
+  {
+    "date": "2026-06-10",
+    "activities": [
+      { "name": "brushed my teeth", "category": "self care" },
+      { "name": "showered", "category": "self care" }
+    ]
+  },
+  {
+    "date": "2026-06-09",
+    "activities": [
+      { "name": "went for a walk", "category": "movement" },
+      { "name": "cleaned my room", "category": "home" }
+    ]
+  },
+  {
+    "date": "2026-06-08",
+    "activities": [
+      { "name": "did yoga", "category": "movement" },
+      { "name": "changed bedsheets", "category": "home" },
+      { "name": "showered", "category": "self care" }
+    ]
+  }
+]
