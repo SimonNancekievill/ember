@@ -12,7 +12,7 @@ margin: 0;
   body {
     margin: 0;
     font-family: system-ui;
-    background-color: #e6e6e6
+    background-color: #e6e6e6;
   } 
   ul {
     margin: 0;
