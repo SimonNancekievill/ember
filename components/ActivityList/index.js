@@ -7,7 +7,13 @@ export default function ActivityList({ entries }) {
       {entries.map((entry) => {
         const { activities } = entry;
         return activities.map((activity) => {
-          return <ActivityListItem activity={activity} key={activity.name} />;
+          return (
+            <ActivityListItem
+              activity={activity}
+              date={entry.createdAt}
+              key={activity.name}
+            />
+          );
         });
       })}
     </StyledList>

@@ -1,13 +1,19 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-export default function ActivityListItem({ activity }) {
+export default function ActivityListItem({ activity, date }) {
+  const formatedDate = new Date(date).toLocaleDateString("de-DE", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
   return (
     <StyledItem key={activity.name}>
       <h2>{activity.name}</h2>
       <StyledSection>
         <StyledImage width={48} height={48} alt="placeholder" />
-        <StyledDate>Datum</StyledDate>
+        <StyledDate>{formatedDate}</StyledDate>
         <StyledCategory>{activity.category}</StyledCategory>
       </StyledSection>
     </StyledItem>
