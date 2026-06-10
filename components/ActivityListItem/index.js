@@ -10,7 +10,7 @@ export default function ActivityListItem({ activity, date }) {
 
   return (
     <StyledItem key={activity.name}>
-      <h2>{activity.name}</h2>
+      <StyledName>{activity.name}</StyledName>
       <StyledSection>
         <StyledImage width={48} height={48} alt="placeholder" />
         <StyledDate>{formatedDate}</StyledDate>
@@ -34,12 +34,17 @@ const StyledItem = styled.li`
 
 const StyledSection = styled.section`
   display: grid;
+  margin-top: 16px;
   column-gap: 12px;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
   grid-template-areas:
     "image date"
     "image category";
+`;
+
+const StyledName = styled.h2`
+  font-weight: 500;
 `;
 
 const StyledDate = styled.p`
