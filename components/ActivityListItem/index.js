@@ -6,7 +6,9 @@ export default function ActivityListItem({ activity }) {
     <StyledItem key={activity.name}>
       <h2>{activity.name}</h2>
       <StyledSection>
-        <p>{activity.category}</p>
+        <StyledImage width={48} height={48} alt="placeholder" />
+        <StyledDate>Datum</StyledDate>
+        <StyledCategory>{activity.category}</StyledCategory>
       </StyledSection>
     </StyledItem>
   );
@@ -26,6 +28,28 @@ const StyledItem = styled.li`
 
 const StyledSection = styled.section`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  column-gap: 12px;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "image date"
+    "image category";
+`;
+
+const StyledDate = styled.p`
+  grid-area: date;
+  font-weight: bold;
+  color: #757575;
+  line-height: 0.9;
+`;
+const StyledImage = styled(Image)`
+  grid-area: image;
+  background-color: #e6e6e6;
+  border-radius: 50%;
+`;
+
+const StyledCategory = styled.p`
+  grid-area: category;
+  color: #b3b3b3;
+  line-height: 0.9;
 `;
