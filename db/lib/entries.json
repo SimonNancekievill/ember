@@ -1,20 +1,23 @@
 [
   {
-    "date": "2026-06-10",
+    "createdAt": "2026-06-10T08:00:00.000Z",
+    "updatedAt": "2026-06-10T08:00:00.000Z",
     "activities": [
       { "name": "brushed my teeth", "category": "self care" },
       { "name": "showered", "category": "self care" }
     ]
   },
   {
-    "date": "2026-06-09",
+    "createdAt": "2026-06-09T08:00:00.000Z",
+    "updatedAt": "2026-06-09T08:00:00.000Z",
     "activities": [
       { "name": "went for a walk", "category": "movement" },
       { "name": "cleaned my room", "category": "home" }
     ]
   },
   {
-    "date": "2026-06-08",
+    "createdAt": "2026-06-08T08:00:00.000Z",
+    "updatedAt": "2026-06-08T08:00:00.000Z",
     "activities": [
       { "name": "did yoga", "category": "movement" },
       { "name": "changed bedsheets", "category": "home" },
