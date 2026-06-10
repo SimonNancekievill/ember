@@ -2,7 +2,8 @@ import ActivityList from "@/components/ActivityList";
 import useSWR from "swr";
 
 export default function HomePage() {
-  const { data: entries, isLoading, error } = useSWR("/api/Entry");
+  const { data: entries, isLoading, error } = useSWR("/api/entries");
+
   if (isLoading) return <p>sorting your activities…</p>;
 
   if (!entries || error) {
