@@ -4,7 +4,9 @@ import Button from "../Button";
 export default function ButtomSheet() {
   return (
     <Overlay>
-      <Sheet></Sheet>
+      <Sheet>
+        <Button>delete</Button>
+      </Sheet>
     </Overlay>
   );
 }
@@ -27,5 +29,9 @@ const Sheet = styled.div`
   width: 100%;
   left: 0;
   bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px 48px 24px 48px;
   border-radius: 16px 16px 0px 0px;
 `;
