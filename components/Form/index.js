@@ -3,8 +3,8 @@ import Button from "../Button";
 
 export default function Form({ onSubmit }) {
   return (
-    <FormWrapper onSubmit={onSubmit}>
-      <StyledForm>
+    <FormWrapper>
+      <StyledForm onSubmit={onSubmit}>
         <StyledActivityLabel htmlFor="activity">
           <span>
             Today I managed to:
@@ -17,7 +17,7 @@ export default function Form({ onSubmit }) {
             Category
             <small>*</small>
           </span>
-          <StyledSelect name="category" required>
+          <StyledSelect id="category" name="category" required>
             <option value="">select a category</option>
             <option value="home">Home</option>
             <option value="movement">Movement</option>

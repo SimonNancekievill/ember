@@ -7,9 +7,8 @@ import styled from "styled-components";
 import Form from "@/components/Form";
 
 export default function HomePage() {
-  const { data: entries, isLoading, error } = useSWR("/api/entries");
+  const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
   const [isActive, setIsActive] = useState(false);
-  const { mutate } = useSWR("/api/entries");
 
   async function handleSubmit(event) {
     event.preventDefault();

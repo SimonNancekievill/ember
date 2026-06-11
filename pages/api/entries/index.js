@@ -15,6 +15,7 @@ export default async function handler(request, response) {
       await Entry.create(entryData);
 
       response.status(201).json({ status: "Entry successfully created." });
+      return;
     }
   } catch (error) {
     console.error(error);
