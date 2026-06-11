@@ -5,19 +5,27 @@ export default function Form() {
   return (
     <FormWrapper>
       <StyledForm>
-        <label htmlFor="activity">
-          Today I manged to:
+        <StyledActivityLabel htmlFor="activity">
+          <span>
+            Today I managed to:
+            <small>*</small>
+          </span>
           <input id="activity" name="activity" type="text" required />
-        </label>
-        <label htmlFor="category">
-          Category
+        </StyledActivityLabel>
+        <StyledCategoryLabel htmlFor="category">
+          <span>
+            Category
+            <small>*</small>
+          </span>
           <StyledSelect name="category" required>
-            <option value="">select a category</option>
+            <option value="" selected disabled>
+              select a category
+            </option>
             <option value="home">Home</option>
             <option value="movement">Movement</option>
             <option value="self care">Self care</option>
           </StyledSelect>
-        </label>
+        </StyledCategoryLabel>
         <Button $variant="form">Time spend for me</Button>
       </StyledForm>
     </FormWrapper>
@@ -32,7 +40,7 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   height: 276px;
   width: 320px;
   gap: 24px;
@@ -46,4 +54,15 @@ const StyledSelect = styled.select`
   padding: 8px 16px;
   border: none;
   background-color: #f5f5f5;
+`;
+
+const StyledCategoryLabel = styled.label`
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+`;
+const StyledActivityLabel = styled.label`
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
 `;
