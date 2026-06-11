@@ -36,4 +36,12 @@ export default styled.button`
       height: auto;
       font-size: 19px;
     `}
+
+    ${(props) =>
+    props.$variant === "cancel" &&
+    css`
+      background-color: transparent;
+      border: none;
+      color: #2c2c2c;
+    `}
 `;

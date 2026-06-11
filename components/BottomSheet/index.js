@@ -1,11 +1,34 @@
 import styled from "styled-components";
 import Button from "../Button";
+import { useState } from "react";
 
 export default function ButtomSheet({ onClose }) {
+  const [confirmDelete, setConfirmDelete] = useState(false);
+
   return (
     <Overlay onClick={onClose}>
-      <Sheet onClick={(event) => event.stopPropagation()}>
-        <Button>delete</Button>
+      <Sheet
+        $expanded={confirmDelete}
+        onClick={(event) => event.stopPropagation()}
+      >
+        {confirmDelete ? (
+          <StyledWrapper>
+            <p>do you really want to delete your activtiy?</p>
+            <ButtonWrapper>
+              <Button>delete</Button>
+              <Button
+                $variant="cancel"
+                onClick={() => setConfirmDelete(!confirmDelete)}
+              >
+                cancel
+              </Button>
+            </ButtonWrapper>
+          </StyledWrapper>
+        ) : (
+          <Button onClick={() => setConfirmDelete(!confirmDelete)}>
+            delete
+          </Button>
+        )}
       </Sheet>
     </Overlay>
   );
@@ -25,7 +48,7 @@ const Sheet = styled.div`
   position: fixed;
   z-index: 11;
   background-color: #fff;
-  height: 140px;
+  height: ${(props) => (props.$expanded ? "220px" : "140px")};
   width: 100%;
   left: 0;
   bottom: 0;
@@ -34,4 +57,15 @@ const Sheet = styled.div`
   justify-content: center;
   padding: 24px 48px 24px 48px;
   border-radius: 16px 16px 0px 0px;
+`;
+
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+`;
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 `;
