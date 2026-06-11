@@ -3,24 +3,30 @@ import Button from "../Button";
 
 export default function Form() {
   return (
-    <StyledForm>
-      <label htmlFor="activity">
-        Today I manged to:
-        <input id="activity" name="activity" type="text" required />
-      </label>
-      <label htmlFor="category">
-        Category
-        <StyledSelect name="category" required>
-          <option value="">select a category</option>
-          <option value="home">Home</option>
-          <option value="movement">Movement</option>
-          <option value="self care">Self care</option>
-        </StyledSelect>
-      </label>
-      <Button $variant="form">Time spend for me</Button>
-    </StyledForm>
+    <FormWrapper>
+      <StyledForm>
+        <label htmlFor="activity">
+          Today I manged to:
+          <input id="activity" name="activity" type="text" required />
+        </label>
+        <label htmlFor="category">
+          Category
+          <StyledSelect name="category" required>
+            <option value="">select a category</option>
+            <option value="home">Home</option>
+            <option value="movement">Movement</option>
+            <option value="self care">Self care</option>
+          </StyledSelect>
+        </label>
+        <Button $variant="form">Time spend for me</Button>
+      </StyledForm>
+    </FormWrapper>
   );
 }
+
+const FormWrapper = styled.div`
+  padding: 16px 48px 0px 48px;
+`;
 
 const StyledForm = styled.form`
   display: flex;
