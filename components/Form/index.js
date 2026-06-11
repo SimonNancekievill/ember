@@ -1,39 +1,9 @@
 import styled from "styled-components";
 import Button from "../Button";
-import useSWR from "swr";
 
-export default function Form() {
-  const { mutate } = useSWR("/api/entries");
-  async function handleSubmit(event) {
-    event.preventDefault();
-
-    const formData = new FormData(event.target);
-
-    const entryData = {
-      activities: [
-        {
-          name: formData.get("activity"),
-          category: formData.get("category"),
-        },
-      ],
-    };
-
-    const response = await fetch("/api/entries", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(entryData),
-    });
-    console.log(entryData);
-    if (response.ok) {
-      mutate();
-      event.target.reset();
-    }
-  }
-
+export default function Form({ onSubmit }) {
   return (
-    <FormWrapper onSubmit={handleSubmit}>
+    <FormWrapper onSubmit={onSubmit}>
       <StyledForm>
         <StyledActivityLabel htmlFor="activity">
           <span>

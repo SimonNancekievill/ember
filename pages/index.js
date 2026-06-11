@@ -8,6 +8,35 @@ import Form from "@/components/Form";
 export default function HomePage() {
   const { data: entries, isLoading, error } = useSWR("/api/entries");
   const [isActive, setIsActive] = useState(false);
+  const { mutate } = useSWR("/api/entries");
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    const entryData = {
+      activities: [
+        {
+          name: formData.get("activity"),
+          category: formData.get("category"),
+        },
+      ],
+    };
+
+    const response = await fetch("/api/entries", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(entryData),
+    });
+    console.log(entryData);
+    if (response.ok) {
+      mutate();
+      event.target.reset();
+    }
+  }
 
   if (isLoading) return <p>sorting your activities…</p>;
 
@@ -31,7 +60,7 @@ export default function HomePage() {
               Close
             </Button>
           </ButtonWrapper>
-          <Form />
+          <Form onSubmit={handleSubmit} />
         </>
       ) : (
         <ButtonWrapper>
