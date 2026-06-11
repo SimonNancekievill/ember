@@ -18,7 +18,7 @@ export default function ActivityListItem({ activity, date }) {
       <Button $variant="dots" onClick={() => setMenuOpen(!menuOpen)}>
         ...
       </Button>
-      {menuOpen && <BottomSheet />}
+      {menuOpen && <BottomSheet onClose={() => setMenuOpen(false)} />}
       <StyledName>{activity.name}</StyledName>
       <StyledSection>
         <StyledImage

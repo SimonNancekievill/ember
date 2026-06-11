@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Button from "../Button";
 
-export default function ButtomSheet() {
+export default function ButtomSheet({ onClose }) {
   return (
-    <Overlay>
-      <Sheet>
+    <Overlay onClick={onClose}>
+      <Sheet onClick={(event) => event.stopPropagation()}>
         <Button>delete</Button>
       </Sheet>
     </Overlay>
