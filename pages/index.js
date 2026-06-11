@@ -1,6 +1,5 @@
 import ActivityList from "@/components/ActivityList";
 import useSWR from "swr";
-import styled from "styled-components";
 
 export default function HomePage() {
   const { data: entries, isLoading, error } = useSWR("/api/entries");
