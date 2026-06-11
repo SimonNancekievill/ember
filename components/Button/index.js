@@ -1,5 +1,4 @@
-import styled from "styled-components";
-import css from "styled-components";
+import styled, { css } from "styled-components";
 
 export default styled.button`
   cursor: pointer;
@@ -9,4 +8,10 @@ export default styled.button`
   height: 40px;
   border-radius: 8px;
   color: #f5f5f5;
+
+  ${(props) =>
+    props.$variant === "form" &&
+    css`
+      width: 272px;
+    `};
 `;
