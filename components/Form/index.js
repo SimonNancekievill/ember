@@ -22,7 +22,7 @@ export default function Form() {
             Today I managed to:
             <small>*</small>
           </span>
-          <input id="activity" name="activity" type="text" required />
+          <StyledTextInput id="activity" name="activity" type="text" required />
         </StyledActivityLabel>
         <StyledCategoryLabel htmlFor="category">
           <span>
@@ -59,20 +59,30 @@ const StyledForm = styled.form`
   background-color: #fff;
 `;
 
+const StyledTextInput = styled.input`
+  border-radius: 8px;
+  padding: 8px 16px;
+  border: 1px solid #d9d9d9;
+  width: 100%;
+`;
+
 const StyledSelect = styled.select`
   border-radius: 8px;
   padding: 8px 16px;
-  border: none;
-  background-color: #f5f5f5;
+  border: 1px solid #d9d9d9;
+  width: 100%;
+  background-color: transparent;
 `;
 
 const StyledCategoryLabel = styled.label`
   display: flex;
   gap: 8px;
   flex-direction: column;
+  width: 100%;
 `;
 const StyledActivityLabel = styled.label`
   display: flex;
   gap: 8px;
+  width: 100%;
   flex-direction: column;
 `;
