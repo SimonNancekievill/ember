@@ -1,20 +1,27 @@
 import ActivityListItem from "../ActivityListItem";
+import { Fragment } from "react";
 import styled from "styled-components";
 
 export default function ActivityList({ entries }) {
+  if (entries.length === 0) {
+    return <p>nothing logged yet — that is okay, today is a new day</p>;
+  }
   return (
     <StyledList>
       {entries.map((entry) => {
-        const { activities } = entry;
-        return activities.map((activity) => {
-          return (
-            <ActivityListItem
-              activity={activity}
-              date={entry.createdAt}
-              key={activity.name}
-            />
-          );
-        });
+        return (
+          <Fragment key={entry._id}>
+            {entry.activities.map((activity) => {
+              return (
+                <ActivityListItem
+                  key={activity._id}
+                  activity={activity}
+                  date={entry.createdAt}
+                />
+              );
+            })}
+          </Fragment>
+        );
       })}
     </StyledList>
   );

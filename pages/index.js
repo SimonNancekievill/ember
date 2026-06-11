@@ -77,7 +77,6 @@ export default function HomePage() {
           </Button>
         </ButtonWrapper>
       )}
-
       <ActivityList entries={entries} />
     </>
   );
