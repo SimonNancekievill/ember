@@ -2,6 +2,9 @@ import ActivityListItem from "../ActivityListItem";
 import styled from "styled-components";
 
 export default function ActivityList({ entries }) {
+  if (entries === 0) {
+    <p>nothing logged yet — that is okay, today is a new day</p>;
+  }
   return (
     <StyledList>
       {entries.map((entry) => {
