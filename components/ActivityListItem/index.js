@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Button from "../Button";
 
 export default function ActivityListItem({ activity, date }) {
   const formattedDate = new Date(date).toLocaleDateString("de-DE", {
@@ -10,7 +11,7 @@ export default function ActivityListItem({ activity, date }) {
 
   return (
     <StyledItem>
-      <StyledDots>…</StyledDots>
+      <Button $variant="dots">...</Button>
       <StyledName>{activity.name}</StyledName>
       <StyledSection>
         <StyledImage
@@ -27,6 +28,7 @@ export default function ActivityListItem({ activity, date }) {
 }
 
 const StyledItem = styled.li`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,12 +39,6 @@ const StyledItem = styled.li`
   border-radius: 8px;
   padding: 8px 32px;
   background-color: #fff;
-`;
-
-const StyledDots = styled.button`
-  position: absolute;
-  top: 16px;
-  right: 16px;
 `;
 
 const StyledSection = styled.section`

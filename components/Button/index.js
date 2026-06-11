@@ -22,4 +22,18 @@ export default styled.button`
       border: 1px solid #2c2c2c;
       color: #2c2c2c;
     `}
+
+  ${(props) =>
+    props.$variant === "dots" &&
+    css`
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background-color: transparent;
+      border: none;
+      color: #2c2c2c;
+      width: auto;
+      height: auto;
+      font-size: 19px;
+    `}
 `;
