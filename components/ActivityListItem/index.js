@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import Image from "next/image";
 import Button from "../Button";
+import { useState } from "react";
+import BottomSheet from "../BottomSheet";
 
 export default function ActivityListItem({ activity, date }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const formattedDate = new Date(date).toLocaleDateString("de-DE", {
     day: "numeric",
     month: "long",
@@ -11,7 +15,10 @@ export default function ActivityListItem({ activity, date }) {
 
   return (
     <StyledItem>
-      <Button $variant="dots">...</Button>
+      <Button $variant="dots" onClick={() => setMenuOpen(!menuOpen)}>
+        ...
+      </Button>
+      {menuOpen && <BottomSheet />}
       <StyledName>{activity.name}</StyledName>
       <StyledSection>
         <StyledImage
