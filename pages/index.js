@@ -1,5 +1,6 @@
 import ActivityList from "@/components/ActivityList";
 import useSWR from "swr";
+import toast from "react-hot-toast";
 import { useState } from "react";
 import Button from "@/components/Button";
 import styled from "styled-components";
@@ -31,10 +32,13 @@ export default function HomePage() {
       },
       body: JSON.stringify(entryData),
     });
-    console.log(entryData);
+
     if (response.ok) {
       mutate();
+      toast.success("Successfully created your Activity.");
       event.target.reset();
+    } else {
+      toast.error("Something went wrong, just try again.");
     }
   }
 

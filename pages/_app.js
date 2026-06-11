@@ -1,4 +1,5 @@
-import { SWRConfig, useSWRConfig } from "swr";
+import { SWRConfig } from "swr";
+import { Toaster } from "react-hot-toast";
 import GlobalStyle from "../styles";
 
 const fetcher = async (url) => {
@@ -18,6 +19,34 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
+      <Toaster
+        position="bottom-center"
+        reverseOrder={false}
+        gutter={8}
+        containerClassName=""
+        containerStyle={{}}
+        toasterId="default"
+        toastOptions={{
+          // Define default options
+          className: "",
+          duration: 5000,
+          removeDelay: 1000,
+          style: {
+            background: "#fff",
+            color: "#757575",
+          },
+
+          // Default options for specific types
+          success: {
+            duration: 5000,
+          },
+          error: {
+            duration: 3000,
+            background: "hsl(359, 100%, 61%, 20%)",
+            color: "#fff",
+          },
+        }}
+      />
       <SWRConfig value={{ fetcher }}>
         <Component {...pageProps} />
       </SWRConfig>
