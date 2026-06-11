@@ -1,11 +1,13 @@
 import ActivityList from "@/components/ActivityList";
 import useSWR from "swr";
+import { useState } from "react";
 import Button from "@/components/Button";
 import styled from "styled-components";
 import Form from "@/components/Form";
 
 export default function HomePage() {
   const { data: entries, isLoading, error } = useSWR("/api/entries");
+  const [isActive, setIsActive] = useState(false);
 
   if (isLoading) return <p>sorting your activities…</p>;
 
@@ -16,12 +18,34 @@ export default function HomePage() {
   return (
     <>
       <h1>Good to see you!</h1>
-      <ButtonWrapper>
-        <Button type="button" aria-label="Open Activity Form">
-          Add new
-        </Button>
-      </ButtonWrapper>
-      <Form />
+
+      {isActive ? (
+        <>
+          {" "}
+          <ButtonWrapper>
+            <Button
+              type="button"
+              aria-label="Opened Activity Form"
+              $variant="secondary"
+              onClick={() => setIsActive(!isActive)}
+            >
+              Add new
+            </Button>{" "}
+          </ButtonWrapper>
+          <Form />
+        </>
+      ) : (
+        <ButtonWrapper>
+          <Button
+            type="button"
+            aria-label="Open Activity Form"
+            onClick={() => setIsActive(!isActive)}
+          >
+            Add new
+          </Button>
+        </ButtonWrapper>
+      )}
+
       <ActivityList entries={entries} />
     </>
   );

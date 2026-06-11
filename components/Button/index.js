@@ -14,4 +14,12 @@ export default styled.button`
     css`
       width: 272px;
     `};
+
+  ${(props) =>
+    props.$variant === "secondary" &&
+    css`
+      background-color: transparent;
+      border: 1px solid #2c2c2c;
+      color: #2c2c2c;
+    `}
 `;
