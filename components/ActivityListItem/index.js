@@ -10,10 +10,11 @@ export default function ActivityListItem({ activity, date }) {
 
   return (
     <StyledItem>
+      <StyledDots>…</StyledDots>
       <StyledName>{activity.name}</StyledName>
       <StyledSection>
         <StyledImage
-          src="/placeholder.png"
+          src="/images/placeholder.png"
           width={48}
           height={48}
           alt="placeholder"
@@ -36,6 +37,12 @@ const StyledItem = styled.li`
   border-radius: 8px;
   padding: 8px 32px;
   background-color: #fff;
+`;
+
+const StyledDots = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 16px;
 `;
 
 const StyledSection = styled.section`
