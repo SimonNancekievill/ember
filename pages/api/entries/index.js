@@ -9,6 +9,13 @@ export default async function handler(request, response) {
       response.status(200).json(entries);
       return;
     }
+
+    if (request.method === "POST") {
+      const entryData = request.body;
+      await Entry.create(entryData);
+
+      response.status(201).json({ status: "Entry successfully created." });
+    }
   } catch (error) {
     console.error(error);
     response.status(500).json({ status: "Internal Server Error." });
