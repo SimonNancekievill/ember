@@ -56,7 +56,7 @@ export default function HomePage() {
           <ButtonWrapper>
             <Button
               type="button"
-              aria-label="Opened Activity Form"
+              aria-label="Close Activity Form"
               $variant="secondary"
               onClick={() => setIsActive(!isActive)}
             >
