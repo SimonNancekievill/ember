@@ -3,15 +3,33 @@ import Button from "../Button";
 import useSWR from "swr";
 
 export default function Form() {
-  function handleSubmit(event) {
+  const { mutate } = useSWR("/api/entries");
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    const entryData = Object.fromEntries(formData);
 
-    console.log("Data from the From: ", entryData);
+    const entryData = {
+      activities: [
+        {
+          name: formData.get("activity"),
+          category: formData.get("category"),
+        },
+      ],
+    };
 
-    event.target.reset();
+    const response = await fetch("/api/entries", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(entryData),
+    });
+    console.log(entryData);
+    if (response.ok) {
+      mutate();
+      event.target.reset();
+    }
   }
 
   return (

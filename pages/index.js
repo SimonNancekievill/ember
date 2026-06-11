@@ -21,7 +21,6 @@ export default function HomePage() {
 
       {isActive ? (
         <>
-          {" "}
           <ButtonWrapper>
             <Button
               type="button"
@@ -30,7 +29,7 @@ export default function HomePage() {
               onClick={() => setIsActive(!isActive)}
             >
               Add new
-            </Button>{" "}
+            </Button>
           </ButtonWrapper>
           <Form />
         </>
