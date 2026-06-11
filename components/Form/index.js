@@ -1,9 +1,21 @@
 import styled from "styled-components";
 import Button from "../Button";
+import useSWR from "swr";
 
 export default function Form() {
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const entryData = Object.fromEntries(formData);
+
+    console.log("Data from the From: ", entryData);
+
+    event.target.reset();
+  }
+
   return (
-    <FormWrapper>
+    <FormWrapper onSubmit={handleSubmit}>
       <StyledForm>
         <StyledActivityLabel htmlFor="activity">
           <span>
@@ -18,9 +30,7 @@ export default function Form() {
             <small>*</small>
           </span>
           <StyledSelect name="category" required>
-            <option value="" selected disabled>
-              select a category
-            </option>
+            <option value="">select a category</option>
             <option value="home">Home</option>
             <option value="movement">Movement</option>
             <option value="self care">Self care</option>
