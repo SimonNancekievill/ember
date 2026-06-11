@@ -28,7 +28,7 @@ export default function HomePage() {
               $variant="secondary"
               onClick={() => setIsActive(!isActive)}
             >
-              Add new
+              Close
             </Button>
           </ButtonWrapper>
           <Form />
