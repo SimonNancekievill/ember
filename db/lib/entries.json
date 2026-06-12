@@ -2,26 +2,20 @@
   {
     "createdAt": "2026-06-10T08:00:00.000Z",
     "updatedAt": "2026-06-10T08:00:00.000Z",
-    "activities": [
-      { "name": "brushed my teeth", "category": "self care" },
-      { "name": "showered", "category": "self care" }
-    ]
+    "name": "brushed my teeth",
+    "category": "self care"
+  },
+
+  {
+    "createdAt": "2026-06-09T08:00:00.000Z",
+    "updatedAt": "2026-06-09T08:00:00.000Z",
+    "name": "went for a walk",
+    "category": "movement"
   },
   {
     "createdAt": "2026-06-09T08:00:00.000Z",
     "updatedAt": "2026-06-09T08:00:00.000Z",
-    "activities": [
-      { "name": "went for a walk", "category": "movement" },
-      { "name": "cleaned my room", "category": "home" }
-    ]
-  },
-  {
-    "createdAt": "2026-06-08T08:00:00.000Z",
-    "updatedAt": "2026-06-08T08:00:00.000Z",
-    "activities": [
-      { "name": "did yoga", "category": "movement" },
-      { "name": "changed bedsheets", "category": "home" },
-      { "name": "showered", "category": "self care" }
-    ]
+    "name": "cleaned my room",
+    "category": "home"
   }
 ]

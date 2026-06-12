@@ -4,12 +4,8 @@ const { Schema } = mongoose;
 
 const entrySchema = new Schema(
   {
-    activities: [
-      {
-        name: { type: String, required: true },
-        category: { type: String },
-      },
-    ],
+    name: { type: String, required: true },
+    category: { type: String },
   },
   { timestamps: true }
 );

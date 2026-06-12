@@ -4,7 +4,7 @@ import Button from "../Button";
 import { useState } from "react";
 import BottomSheet from "../BottomSheet";
 
-export default function ActivityListItem({ activity, date, id }) {
+export default function ActivityListItem({ name, date, category, id }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const formattedDate = new Date(date).toLocaleDateString("de-DE", {
@@ -19,7 +19,7 @@ export default function ActivityListItem({ activity, date, id }) {
         ...
       </Button>
       {menuOpen && <BottomSheet id={id} onClose={() => setMenuOpen(false)} />}
-      <StyledName>{activity.name}</StyledName>
+      <StyledName>{name}</StyledName>
       <StyledSection>
         <StyledImage
           src="/images/placeholder.png"
@@ -28,7 +28,7 @@ export default function ActivityListItem({ activity, date, id }) {
           alt="placeholder"
         />
         <StyledDate>{formattedDate}</StyledDate>
-        <StyledCategory>{activity.category}</StyledCategory>
+        <StyledCategory>{category}</StyledCategory>
       </StyledSection>
     </StyledItem>
   );
