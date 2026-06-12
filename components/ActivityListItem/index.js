@@ -15,7 +15,11 @@ export default function ActivityListItem({ name, date, category, id }) {
 
   return (
     <StyledItem>
-      <Button $variant="dots" onClick={() => setMenuOpen(!menuOpen)}>
+      <Button
+        $variant="dots"
+        aria-label="Open options"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
         ...
       </Button>
       {menuOpen && <BottomSheet id={id} onClose={() => setMenuOpen(false)} />}

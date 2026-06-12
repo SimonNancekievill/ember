@@ -13,6 +13,7 @@ export default async function handler(request, response) {
   } catch (error) {
     console.error(error);
     response.status(500).json({ status: "Internal Server Error." });
+    return;
   }
 
   response.status(405).json({ status: "Method not allowed." });

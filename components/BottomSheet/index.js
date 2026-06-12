@@ -4,7 +4,7 @@ import { useState } from "react";
 import useSWR from "swr";
 import toast from "react-hot-toast";
 
-export default function ButtomSheet({ onClose, id }) {
+export default function BottomSheet({ onClose, id }) {
   const { mutate } = useSWR("/api/entries");
   const [confirmDelete, setConfirmDelete] = useState(false);
 
@@ -14,8 +14,7 @@ export default function ButtomSheet({ onClose, id }) {
       mutate();
       onClose();
       toast.success("Successfully deleted your Activity.");
-    }
-    if (!response.ok) {
+    } else {
       toast.error("Something didn't work, try again… ");
     }
   }
