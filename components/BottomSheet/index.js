@@ -15,6 +15,9 @@ export default function ButtomSheet({ onClose, id }) {
       onClose();
       toast.success("Successfully deleted your Activity.");
     }
+    if (!response.ok) {
+      toast.error("Something didn't work, try again… ");
+    }
   }
 
   return (
@@ -25,7 +28,9 @@ export default function ButtomSheet({ onClose, id }) {
       >
         {confirmDelete ? (
           <StyledWrapper>
-            <p>do you really want to delete your activtiy?</p>
+            <StyledParagraph>
+              do you really want to delete your activtiy?
+            </StyledParagraph>
             <ButtonWrapper>
               <Button onClick={handleDeleteActivity}>delete</Button>
               <Button
@@ -74,10 +79,15 @@ const Sheet = styled.div`
 const StyledWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 24px;
 `;
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
+`;
+
+const StyledParagraph = styled.p`
+  color: #757575;
 `;
