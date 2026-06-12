@@ -21,7 +21,24 @@ export default function BottomSheet({ onClose, id, name, category }) {
     }
   }
 
-  async function handleEditActivity() {}
+  async function handleEditActivity(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const entryData = {
+      name: formData.get("name"),
+      category: formData.get("category"),
+    };
+
+    const response = await fetch(`/api/entries/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(entryData),
+    });
+    if (response.ok) {
+      mutate();
+      onClose();
+    }
+  }
 
   return (
     <Overlay onClick={onClose}>

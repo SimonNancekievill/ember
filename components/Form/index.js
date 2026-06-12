@@ -36,7 +36,7 @@ export default function Form({ onSubmit, $isEditMode, name, category }) {
           </StyledSelect>
         </StyledCategoryLabel>
         {$isEditMode ? (
-          <></>
+          <Button $variant="form">save & close</Button>
         ) : (
           <Button $variant="form">Time spend for me</Button>
         )}
