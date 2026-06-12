@@ -52,9 +52,8 @@ const FormWrapper = styled.div`
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: flex-start;
-  height: 276px;
+  height: ${(props) => (props.$isEditMode ? "auto" : "276px")};
   width: 320px;
   gap: 24px;
   border-radius: 8px;

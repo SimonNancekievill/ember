@@ -21,6 +21,8 @@ export default function BottomSheet({ onClose, id, name, category }) {
     }
   }
 
+  async function handleEditActivity() {}
+
   return (
     <Overlay onClick={onClose}>
       <Sheet
@@ -45,7 +47,12 @@ export default function BottomSheet({ onClose, id, name, category }) {
           </StyledWrapper>
         ) : isEditMode ? (
           <StyledWrapper>
-            <Form $isEditMode name={name} category={category} />
+            <Form
+              $isEditMode
+              name={name}
+              category={category}
+              onSubmit={handleEditActivity}
+            />
             <ButtonWrapper>
               <Button $variant="secondary">save & close</Button>
               <Button onClick={() => setIsEditMode(!isEditMode)}>cancel</Button>
