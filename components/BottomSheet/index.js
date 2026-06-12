@@ -41,9 +41,12 @@ export default function BottomSheet({ onClose, id }) {
             </ButtonWrapper>
           </StyledWrapper>
         ) : (
-          <Button onClick={() => setConfirmDelete(!confirmDelete)}>
-            delete
-          </Button>
+          <ButtonWrapper>
+            <Button $variant="secondary">edit</Button>
+            <Button onClick={() => setConfirmDelete(!confirmDelete)}>
+              delete
+            </Button>
+          </ButtonWrapper>
         )}
       </Sheet>
     </Overlay>
