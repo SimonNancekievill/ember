@@ -5,12 +5,12 @@ export default function Form({ onSubmit }) {
   return (
     <FormWrapper>
       <StyledForm onSubmit={onSubmit}>
-        <StyledActivityLabel htmlFor="activity">
+        <StyledActivityLabel htmlFor="name">
           <span>
             Today I managed to:
             <small>*</small>
           </span>
-          <StyledTextInput id="activity" name="activity" type="text" required />
+          <StyledTextInput id="name" name="name" type="text" required />
         </StyledActivityLabel>
         <StyledCategoryLabel htmlFor="category">
           <span>

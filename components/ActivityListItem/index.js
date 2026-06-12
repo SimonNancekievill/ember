@@ -1,7 +1,12 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Button from "../Button";
+import { useState } from "react";
+import BottomSheet from "../BottomSheet";
 
-export default function ActivityListItem({ activity, date }) {
+export default function ActivityListItem({ name, date, category, id }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const formattedDate = new Date(date).toLocaleDateString("de-DE", {
     day: "numeric",
     month: "long",
@@ -10,22 +15,31 @@ export default function ActivityListItem({ activity, date }) {
 
   return (
     <StyledItem>
-      <StyledName>{activity.name}</StyledName>
+      <Button
+        $variant="dots"
+        aria-label="Open options"
+        onClick={() => setMenuOpen(!menuOpen)}
+      >
+        ...
+      </Button>
+      {menuOpen && <BottomSheet id={id} onClose={() => setMenuOpen(false)} />}
+      <StyledName>{name}</StyledName>
       <StyledSection>
         <StyledImage
-          src="/placeholder.png"
+          src="/images/placeholder.png"
           width={48}
           height={48}
           alt="placeholder"
         />
         <StyledDate>{formattedDate}</StyledDate>
-        <StyledCategory>{activity.category}</StyledCategory>
+        <StyledCategory>{category}</StyledCategory>
       </StyledSection>
     </StyledItem>
   );
 }
 
 const StyledItem = styled.li`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;

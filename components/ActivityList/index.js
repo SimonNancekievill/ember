@@ -11,15 +11,12 @@ export default function ActivityList({ entries }) {
       {entries.map((entry) => {
         return (
           <Fragment key={entry._id}>
-            {entry.activities.map((activity) => {
-              return (
-                <ActivityListItem
-                  key={activity._id}
-                  activity={activity}
-                  date={entry.createdAt}
-                />
-              );
-            })}
+            <ActivityListItem
+              name={entry.name}
+              date={entry.createdAt}
+              category={entry.category}
+              id={entry._id}
+            />
           </Fragment>
         );
       })}

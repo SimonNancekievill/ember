@@ -16,12 +16,8 @@ export default function HomePage() {
     const formData = new FormData(event.target);
 
     const entryData = {
-      activities: [
-        {
-          name: formData.get("activity"),
-          category: formData.get("category"),
-        },
-      ],
+      name: formData.get("name"),
+      category: formData.get("category"),
     };
 
     const response = await fetch("/api/entries", {
@@ -34,10 +30,11 @@ export default function HomePage() {
 
     if (response.ok) {
       mutate();
+      setIsActive(!isActive);
       toast.success("Successfully created your Activity.");
       event.target.reset();
     } else {
-      toast.error("Something went wrong, just try again.");
+      toast.error("Something went wrong, please try again.");
     }
   }
 
