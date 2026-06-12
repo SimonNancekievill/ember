@@ -38,7 +38,7 @@ export default function BottomSheet({ onClose, id, name, category }) {
       mutate();
       onClose();
     } else {
-      toast.error("somethings wrong, try again please.");
+      toast.error("something went wrong, try again please.");
     }
   }
 
@@ -56,10 +56,7 @@ export default function BottomSheet({ onClose, id, name, category }) {
             </StyledParagraph>
             <ButtonWrapper>
               <Button onClick={handleDeleteActivity}>delete</Button>
-              <Button
-                $variant="cancel"
-                onClick={() => setConfirmDelete(!confirmDelete)}
-              >
+              <Button $variant="cancel" onClick={() => setConfirmDelete(false)}>
                 cancel
               </Button>
             </ButtonWrapper>
@@ -67,16 +64,13 @@ export default function BottomSheet({ onClose, id, name, category }) {
         ) : isEditMode ? (
           <StyledWrapper>
             <Form
-              $isEditMode
+              isEditMode
               name={name}
               category={category}
               onSubmit={handleEditActivity}
             />
             <ButtonWrapper>
-              <Button
-                $variant="cancel"
-                onClick={() => setIsEditMode(!isEditMode)}
-              >
+              <Button $variant="cancel" onClick={() => setIsEditMode(false)}>
                 cancel
               </Button>
             </ButtonWrapper>

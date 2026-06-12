@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Button from "../Button";
 
-export default function Form({ onSubmit, $isEditMode, name, category }) {
+export default function Form({ onSubmit, isEditMode, name, category }) {
   return (
     <FormWrapper>
-      <StyledForm onSubmit={onSubmit} $isEditMode={$isEditMode}>
+      <StyledForm onSubmit={onSubmit} $isEditMode={isEditMode}>
         <StyledActivityLabel htmlFor="name">
           <span>
             Today I managed to:
@@ -35,7 +35,7 @@ export default function Form({ onSubmit, $isEditMode, name, category }) {
             <option value="self care">Self care</option>
           </StyledSelect>
         </StyledCategoryLabel>
-        {$isEditMode ? (
+        {isEditMode ? (
           <Button $variant="form">save & close</Button>
         ) : (
           <Button $variant="form">Time spend for me</Button>
