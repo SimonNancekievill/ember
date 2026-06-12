@@ -1,9 +1,20 @@
 import styled from "styled-components";
 import Button from "../Button";
 import { useState } from "react";
+import useSWR from "swr";
 
-export default function ButtomSheet({ onClose }) {
+export default function ButtomSheet({ onClose, id }) {
+  const { mutate } = useSWR("/api/entries");
   const [confirmDelete, setConfirmDelete] = useState(false);
+
+  async function handleDeleteActivity() {
+    const response = await fetch(`/api/entries/${id}`, { method: "DELETE" });
+    console.log(response.status);
+    if (response.ok) {
+      mutate();
+      onClose();
+    }
+  }
 
   return (
     <Overlay onClick={onClose}>
@@ -15,7 +26,7 @@ export default function ButtomSheet({ onClose }) {
           <StyledWrapper>
             <p>do you really want to delete your activtiy?</p>
             <ButtonWrapper>
-              <Button>delete</Button>
+              <Button onClick={handleDeleteActivity}>delete</Button>
               <Button
                 $variant="cancel"
                 onClick={() => setConfirmDelete(!confirmDelete)}

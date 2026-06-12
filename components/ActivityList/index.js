@@ -17,6 +17,7 @@ export default function ActivityList({ entries }) {
                   key={activity._id}
                   activity={activity}
                   date={entry.createdAt}
+                  id={entry._id}
                 />
               );
             })}
