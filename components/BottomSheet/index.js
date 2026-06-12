@@ -5,7 +5,7 @@ import useSWR from "swr";
 import toast from "react-hot-toast";
 import Form from "../Form";
 
-export default function BottomSheet({ onClose, id }) {
+export default function BottomSheet({ onClose, id, name, category }) {
   const { mutate } = useSWR("/api/entries");
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -45,7 +45,7 @@ export default function BottomSheet({ onClose, id }) {
           </StyledWrapper>
         ) : isEditMode ? (
           <StyledWrapper>
-            <Form $isEditMode />
+            <Form $isEditMode name={name} category={category} />
             <ButtonWrapper>
               <Button $variant="secondary">save & close</Button>
               <Button onClick={() => setIsEditMode(!isEditMode)}>cancel</Button>
