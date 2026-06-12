@@ -34,6 +34,7 @@ export default function HomePage() {
 
     if (response.ok) {
       mutate();
+      setIsActive(!isActive);
       toast.success("Successfully created your Activity.");
       event.target.reset();
     } else {
