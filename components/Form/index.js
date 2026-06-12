@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Button from "../Button";
 
-export default function Form({ onSubmit }) {
+export default function Form({ onSubmit, $isEditMode }) {
   return (
     <FormWrapper>
-      <StyledForm onSubmit={onSubmit}>
+      <StyledForm onSubmit={onSubmit} $isEditMode={$isEditMode}>
         <StyledActivityLabel htmlFor="name">
           <span>
             Today I managed to:
@@ -45,6 +45,7 @@ const StyledForm = styled.form`
   border-radius: 8px;
   padding: 24px;
   background-color: #fff;
+  border: ${(props) => (props.$isEditMode ? "1px solid #d9d9d9" : "none")};
 `;
 
 const StyledTextInput = styled.input`

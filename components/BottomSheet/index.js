@@ -3,10 +3,12 @@ import Button from "../Button";
 import { useState } from "react";
 import useSWR from "swr";
 import toast from "react-hot-toast";
+import Form from "../Form";
 
 export default function BottomSheet({ onClose, id }) {
   const { mutate } = useSWR("/api/entries");
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   async function handleDeleteActivity() {
     const response = await fetch(`/api/entries/${id}`, { method: "DELETE" });
@@ -22,7 +24,8 @@ export default function BottomSheet({ onClose, id }) {
   return (
     <Overlay onClick={onClose}>
       <Sheet
-        $expanded={confirmDelete}
+        $expandedMid={confirmDelete}
+        $expandedLarge={isEditMode}
         onClick={(event) => event.stopPropagation()}
       >
         {confirmDelete ? (
@@ -40,9 +43,22 @@ export default function BottomSheet({ onClose, id }) {
               </Button>
             </ButtonWrapper>
           </StyledWrapper>
+        ) : isEditMode ? (
+          <StyledWrapper>
+            <Form $isEditMode />
+            <ButtonWrapper>
+              <Button $variant="secondary">save & close</Button>
+              <Button onClick={() => setIsEditMode(!isEditMode)}>cancel</Button>
+            </ButtonWrapper>
+          </StyledWrapper>
         ) : (
           <ButtonWrapper>
-            <Button $variant="secondary">edit</Button>
+            <Button
+              $variant="secondary"
+              onClick={() => setIsEditMode(!isEditMode)}
+            >
+              edit
+            </Button>
             <Button onClick={() => setConfirmDelete(!confirmDelete)}>
               delete
             </Button>
@@ -67,7 +83,8 @@ const Sheet = styled.div`
   position: fixed;
   z-index: 11;
   background-color: #fff;
-  height: ${(props) => (props.$expanded ? "220px" : "140px")};
+  height: ${(props) =>
+    props.$expandedMid ? "220px" : props.$expandedLarge ? "440px" : "140px"};
   width: 100%;
   left: 0;
   bottom: 0;
@@ -87,7 +104,8 @@ const StyledWrapper = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  gap: 12px;
 `;
 
 const StyledParagraph = styled.p`
