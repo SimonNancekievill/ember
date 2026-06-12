@@ -10,6 +10,12 @@ export default async function handler(request, response) {
       response.status(200).json({ status: "Successfully deleted." });
       return;
     }
+    if (request.method === "PUT") {
+      const updatedActivity = request.body;
+      await Entry.findByIdAndUpdate(id);
+      response.status(200).json({ status: "Successfully updated." });
+      return;
+    }
   } catch (error) {
     console.error(error);
     response.status(500).json({ status: "Internal Server Error." });
