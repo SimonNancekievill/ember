@@ -12,7 +12,7 @@ export default async function handler(request, response) {
     }
     if (request.method === "PUT") {
       const updatedActivity = request.body;
-      await Entry.findByIdAndUpdate(id);
+      await Entry.findByIdAndUpdate(id, updatedActivity);
       response.status(200).json({ status: "Successfully updated." });
       return;
     }

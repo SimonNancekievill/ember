@@ -37,6 +37,8 @@ export default function BottomSheet({ onClose, id, name, category }) {
     if (response.ok) {
       mutate();
       onClose();
+    } else {
+      toast.error("somethings wrong, try again please.");
     }
   }
 
