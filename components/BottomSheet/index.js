@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Button from "../Button";
 import { useState } from "react";
 import useSWR from "swr";
+import toast from "react-hot-toast";
 
 export default function ButtomSheet({ onClose, id }) {
   const { mutate } = useSWR("/api/entries");
@@ -9,10 +10,10 @@ export default function ButtomSheet({ onClose, id }) {
 
   async function handleDeleteActivity() {
     const response = await fetch(`/api/entries/${id}`, { method: "DELETE" });
-    console.log(response.status);
     if (response.ok) {
       mutate();
       onClose();
+      toast.success("Successfully deleted your Activity.");
     }
   }
 
