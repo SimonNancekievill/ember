@@ -3,10 +3,12 @@ import Button from "../Button";
 import { useState } from "react";
 import useSWR from "swr";
 import toast from "react-hot-toast";
+import Form from "../Form";
 
-export default function BottomSheet({ onClose, id }) {
+export default function BottomSheet({ onClose, id, name, category }) {
   const { mutate } = useSWR("/api/entries");
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   async function handleDeleteActivity() {
     const response = await fetch(`/api/entries/${id}`, { method: "DELETE" });
@@ -19,10 +21,33 @@ export default function BottomSheet({ onClose, id }) {
     }
   }
 
+  async function handleEditActivity(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const entryData = {
+      name: formData.get("name"),
+      category: formData.get("category"),
+    };
+
+    const response = await fetch(`/api/entries/${id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(entryData),
+    });
+    if (response.ok) {
+      mutate();
+      toast.success("Successfully updated your activity.");
+      onClose();
+    } else {
+      toast.error("something went wrong, try again please.");
+    }
+  }
+
   return (
     <Overlay onClick={onClose}>
       <Sheet
-        $expanded={confirmDelete}
+        $expandedMid={confirmDelete}
+        $expandedLarge={isEditMode}
         onClick={(event) => event.stopPropagation()}
       >
         {confirmDelete ? (
@@ -32,18 +57,34 @@ export default function BottomSheet({ onClose, id }) {
             </StyledParagraph>
             <ButtonWrapper>
               <Button onClick={handleDeleteActivity}>delete</Button>
-              <Button
-                $variant="cancel"
-                onClick={() => setConfirmDelete(!confirmDelete)}
-              >
+              <Button $variant="cancel" onClick={() => setConfirmDelete(false)}>
+                cancel
+              </Button>
+            </ButtonWrapper>
+          </StyledWrapper>
+        ) : isEditMode ? (
+          <StyledWrapper>
+            <Form
+              isEditMode
+              name={name}
+              category={category}
+              onSubmit={handleEditActivity}
+            />
+            <ButtonWrapper>
+              <Button $variant="cancel" onClick={() => setIsEditMode(false)}>
                 cancel
               </Button>
             </ButtonWrapper>
           </StyledWrapper>
         ) : (
-          <Button onClick={() => setConfirmDelete(!confirmDelete)}>
-            delete
-          </Button>
+          <ButtonWrapper>
+            <Button $variant="secondary" onClick={() => setIsEditMode(true)}>
+              edit
+            </Button>
+            <Button onClick={() => setConfirmDelete(!confirmDelete)}>
+              delete
+            </Button>
+          </ButtonWrapper>
         )}
       </Sheet>
     </Overlay>
@@ -64,7 +105,8 @@ const Sheet = styled.div`
   position: fixed;
   z-index: 11;
   background-color: #fff;
-  height: ${(props) => (props.$expanded ? "220px" : "140px")};
+  height: ${(props) =>
+    props.$expandedMid ? "220px" : props.$expandedLarge ? "440px" : "140px"};
   width: 100%;
   left: 0;
   bottom: 0;
@@ -84,7 +126,8 @@ const StyledWrapper = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  align-items: center;
+  gap: 12px;
 `;
 
 const StyledParagraph = styled.p`

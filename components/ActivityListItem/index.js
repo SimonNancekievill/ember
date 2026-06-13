@@ -22,7 +22,14 @@ export default function ActivityListItem({ name, date, category, id }) {
       >
         ...
       </Button>
-      {menuOpen && <BottomSheet id={id} onClose={() => setMenuOpen(false)} />}
+      {menuOpen && (
+        <BottomSheet
+          id={id}
+          name={name}
+          category={category}
+          onClose={() => setMenuOpen(false)}
+        />
+      )}
       <StyledName>{name}</StyledName>
       <StyledSection>
         <StyledImage
