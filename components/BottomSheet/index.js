@@ -36,6 +36,7 @@ export default function BottomSheet({ onClose, id, name, category }) {
     });
     if (response.ok) {
       mutate();
+      toast.success("Successfully updated your activity.");
       onClose();
     } else {
       toast.error("something went wrong, try again please.");
@@ -77,10 +78,7 @@ export default function BottomSheet({ onClose, id, name, category }) {
           </StyledWrapper>
         ) : (
           <ButtonWrapper>
-            <Button
-              $variant="secondary"
-              onClick={() => setIsEditMode(!isEditMode)}
-            >
+            <Button $variant="secondary" onClick={() => setIsEditMode(true)}>
               edit
             </Button>
             <Button onClick={() => setConfirmDelete(!confirmDelete)}>
