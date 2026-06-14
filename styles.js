@@ -26,13 +26,14 @@ export default createGlobalStyle`
   *::before,
   *::after {
     box-sizing: border-box;
+    text-transform: lowercase;
   }
 h1, h2, h3, h4, h5, h6, p{
 margin: 0;
 }
   body {
     margin: 0;
-    font-family: system-ui;
+    font-family: Overused Grotesk, sans-serif;
     background-color: var(--primary-bg);
   } 
   ul {
@@ -47,5 +48,12 @@ margin: 0;
     }
 
   }
+
+
+  @font-face {
+    font-family: "Overused Grotesk";
+    src: url("/fonts/OverusedGrotesk-VF.ttf") format("woff2-variations");
+    font-weight: 300 900;
+}
 
 `;

@@ -13,6 +13,19 @@ export default function ActivityListItem({ name, date, category, id }) {
     year: "numeric",
   });
 
+  function getCategoryColor(category) {
+    switch (category) {
+      case "movement":
+        return "var(--movement-yellow)";
+      case "home":
+        return "var(--home-indigo)";
+      case "self care":
+        return "var(--selfcare-mint)";
+      default:
+        return "var(--tertiary-grey)";
+    }
+  }
+
   return (
     <StyledItem>
       <Button
@@ -32,12 +45,7 @@ export default function ActivityListItem({ name, date, category, id }) {
       )}
       <StyledName>{name}</StyledName>
       <StyledSection>
-        <StyledImage
-          src="/images/placeholder.png"
-          width={48}
-          height={48}
-          alt="placeholder"
-        />
+        <StyledCircle $color={getCategoryColor(category)} />
         <StyledDate>{formattedDate}</StyledDate>
         <StyledCategory>{category}</StyledCategory>
       </StyledSection>
@@ -66,8 +74,8 @@ const StyledSection = styled.section`
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
   grid-template-areas:
-    "image date"
-    "image category";
+    "circle date"
+    "circle category";
 `;
 
 const StyledName = styled.h2`
@@ -80,9 +88,13 @@ const StyledDate = styled.p`
   color: var(--secondary-grey);
   line-height: 0.9;
 `;
-const StyledImage = styled(Image)`
-  grid-area: image;
+
+const StyledCircle = styled.div`
+  height: 48px;
+  width: 48px;
   border-radius: 50%;
+  grid-area: circle;
+  background-color: ${(props) => props.$color};
 `;
 
 const StyledCategory = styled.p`

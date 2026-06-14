@@ -46,7 +46,10 @@ export default function HomePage() {
 
   return (
     <>
-      <h1>Good to see you!</h1>
+      <StyledTitelWrapper>
+        <StyledTitel>hi simon,</StyledTitel>
+        <StyledSubtitel>good to see you!</StyledSubtitel>
+      </StyledTitelWrapper>
 
       {isActive ? (
         <>
@@ -54,7 +57,7 @@ export default function HomePage() {
             <Button
               type="button"
               aria-label="Close Activity Form"
-              $variant="secondary"
+              $variant="cancel"
               onClick={() => setIsActive(!isActive)}
             >
               Close
@@ -82,4 +85,16 @@ const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding: 24px 48px 0px 48px;
+`;
+
+const StyledTitel = styled.h1`
+  font-weight: 500;
+`;
+const StyledSubtitel = styled.h2`
+  color: var(--tertiary-grey);
+  font-weight: 400;
+`;
+
+const StyledTitelWrapper = styled.div`
+  padding: 24px 48px 24px 48px;
 `;
