@@ -10,12 +10,6 @@ export default styled.button`
   color: var(--secondary-white);
 
   ${(props) =>
-    props.$variant === "form" &&
-    css`
-      width: 272px;
-    `};
-
-  ${(props) =>
     props.$variant === "secondary" &&
     css`
       background-color: transparent;

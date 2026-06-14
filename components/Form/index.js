@@ -3,7 +3,7 @@ import Button from "../Button";
 
 export default function Form({ onSubmit, isEditMode, name, category }) {
   return (
-    <FormWrapper>
+    <FormWrapper $isEditMode={isEditMode}>
       <StyledForm onSubmit={onSubmit} $isEditMode={isEditMode}>
         <StyledActivityLabel htmlFor="name">
           <span>
@@ -37,9 +37,9 @@ export default function Form({ onSubmit, isEditMode, name, category }) {
           </StyledSelect>
         </StyledCategoryLabel>
         {isEditMode ? (
-          <Button $variant="form">save & close</Button>
+          <Button>save & close</Button>
         ) : (
-          <Button $variant="form">Time spent for me</Button>
+          <Button>Time spent for me</Button>
         )}
       </StyledForm>
     </FormWrapper>
@@ -47,7 +47,8 @@ export default function Form({ onSubmit, isEditMode, name, category }) {
 }
 
 const FormWrapper = styled.div`
-  padding: 16px 48px 0px 48px;
+  padding: ${(props) => (props.$isEditMode ? "0" : "16px 48px 0px 48px")};
+  width: 100%;
 `;
 
 const StyledForm = styled.form`
