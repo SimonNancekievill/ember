@@ -69,6 +69,7 @@ const StyledTextInput = styled.input`
   padding: 8px 16px;
   border: 1px solid var(--tertiary-grey);
   width: 100%;
+  font-size: 16px;
 `;
 
 const StyledSelect = styled.select`
@@ -76,6 +77,7 @@ const StyledSelect = styled.select`
   padding: 8px 16px;
   border: 1px solid var(--tertiary-grey);
   width: 100%;
+  font-size: 16px;
   background-color: transparent;
 `;
 
