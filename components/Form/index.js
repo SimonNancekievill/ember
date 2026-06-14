@@ -58,21 +58,21 @@ const StyledForm = styled.form`
   gap: 24px;
   border-radius: 8px;
   padding: 24px;
-  background-color: #fff;
+  background-color: var(--primary-white);
   border: ${(props) => (props.$isEditMode ? "1px solid #d9d9d9" : "none")};
 `;
 
 const StyledTextInput = styled.input`
   border-radius: 8px;
   padding: 8px 16px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid var(--tertiary-grey);
   width: 100%;
 `;
 
 const StyledSelect = styled.select`
   border-radius: 8px;
   padding: 8px 16px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid var(--tertiary-grey);
   width: 100%;
   background-color: transparent;
 `;

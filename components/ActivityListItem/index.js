@@ -56,7 +56,7 @@ const StyledItem = styled.li`
   gap: 16px;
   border-radius: 8px;
   padding: 8px 32px;
-  background-color: #fff;
+  background-color: var(--primary-white);
 `;
 
 const StyledSection = styled.section`
@@ -77,17 +77,16 @@ const StyledName = styled.h2`
 const StyledDate = styled.p`
   grid-area: date;
   font-weight: bold;
-  color: #757575;
+  color: var(--secondary-grey);
   line-height: 0.9;
 `;
 const StyledImage = styled(Image)`
   grid-area: image;
-  background-color: #e6e6e6;
   border-radius: 50%;
 `;
 
 const StyledCategory = styled.p`
   grid-area: category;
-  color: #b3b3b3;
+  color: var(--tertiary-grey);
   line-height: 0.9;
 `;

@@ -98,13 +98,13 @@ const Overlay = styled.div`
   z-index: 10;
   left: 0;
   bottom: 0;
-  background-color: hsl(0 0% 12% / 0.4);
+  background-color: var(--overlay-bg);
 `;
 
 const Sheet = styled.div`
   position: fixed;
   z-index: 11;
-  background-color: #fff;
+  background-color: var(--primary-white);
   height: ${(props) =>
     props.$expandedMid ? "220px" : props.$expandedLarge ? "440px" : "140px"};
   width: 100%;
@@ -131,5 +131,5 @@ const ButtonWrapper = styled.div`
 `;
 
 const StyledParagraph = styled.p`
-  color: #757575;
+  color: var(--tertiary-grey);
 `;
