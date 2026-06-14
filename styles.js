@@ -40,10 +40,12 @@ margin: 0;
     margin: 0;
     padding: 0; 
     list-style-type: none;
+    width: 100%;
 
     & li{
       list-style-type: none;
       padding: 0;
+      margin: 0;
      
     }
 

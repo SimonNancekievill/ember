@@ -52,6 +52,7 @@ export default function BottomSheet({ onClose, id, name, category }) {
       >
         {confirmDelete ? (
           <StyledWrapper>
+            <StyledBar />
             <StyledParagraph>
               do you really want to delete your activtiy?
             </StyledParagraph>
@@ -64,6 +65,7 @@ export default function BottomSheet({ onClose, id, name, category }) {
           </StyledWrapper>
         ) : isEditMode ? (
           <StyledWrapper>
+            <StyledBar />
             <Form
               isEditMode
               name={name}
@@ -77,14 +79,17 @@ export default function BottomSheet({ onClose, id, name, category }) {
             </ButtonWrapper>
           </StyledWrapper>
         ) : (
-          <ButtonWrapper>
-            <Button $variant="secondary" onClick={() => setIsEditMode(true)}>
-              edit
-            </Button>
-            <Button onClick={() => setConfirmDelete(!confirmDelete)}>
-              delete
-            </Button>
-          </ButtonWrapper>
+          <>
+            <StyledBar />
+            <ButtonWrapper>
+              <Button $variant="secondary" onClick={() => setIsEditMode(true)}>
+                edit
+              </Button>
+              <Button onClick={() => setConfirmDelete(!confirmDelete)}>
+                delete
+              </Button>
+            </ButtonWrapper>
+          </>
         )}
       </Sheet>
     </Overlay>
@@ -106,7 +111,7 @@ const Sheet = styled.div`
   z-index: 11;
   background-color: var(--primary-white);
   height: ${(props) =>
-    props.$expandedMid ? "220px" : props.$expandedLarge ? "440px" : "140px"};
+    props.$expandedMid ? "220px" : props.$expandedLarge ? "440px" : "160px"};
   width: 100%;
   left: 0;
   bottom: 0;
@@ -127,9 +132,22 @@ const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
   gap: 12px;
 `;
 
 const StyledParagraph = styled.p`
-  color: var(--tertiary-grey);
+  font-size: 16px;
+  color: var(--secondary-grey);
+`;
+
+const StyledBar = styled.div`
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 4px;
+  background-color: var(--tertiary-grey);
+  border-radius: 4px;
 `;

@@ -14,6 +14,7 @@ export default function Form({ onSubmit, isEditMode, name, category }) {
             id="name"
             name="name"
             type="text"
+            placeholder="brushed my teeth"
             defaultValue={name}
             required
           />
@@ -38,7 +39,7 @@ export default function Form({ onSubmit, isEditMode, name, category }) {
         {isEditMode ? (
           <Button $variant="form">save & close</Button>
         ) : (
-          <Button $variant="form">Time spend for me</Button>
+          <Button $variant="form">Time spent for me</Button>
         )}
       </StyledForm>
     </FormWrapper>
@@ -54,7 +55,7 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: flex-start;
   height: ${(props) => (props.$isEditMode ? "auto" : "276px")};
-  width: 320px;
+  width: 100%;
   gap: 24px;
   border-radius: 8px;
   padding: 24px;

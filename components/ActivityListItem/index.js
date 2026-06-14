@@ -60,7 +60,7 @@ const StyledItem = styled.li`
   justify-content: center;
   align-items: flex-start;
   height: 147px;
-  width: 320px;
+  width: 100%;
   gap: 16px;
   border-radius: 8px;
   padding: 8px 32px;
@@ -71,6 +71,7 @@ const StyledSection = styled.section`
   display: grid;
   margin-top: 16px;
   column-gap: 12px;
+  align-items: center;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
   grid-template-areas:
@@ -79,7 +80,7 @@ const StyledSection = styled.section`
 `;
 
 const StyledName = styled.h2`
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 const StyledDate = styled.p`

@@ -4,7 +4,7 @@ export default styled.button`
   cursor: pointer;
   font-size: 16px;
   background-color: var(--primary-button);
-  width: 320px;
+  width: 100%;
   height: 40px;
   border-radius: 8px;
   color: var(--secondary-white);
