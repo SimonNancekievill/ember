@@ -5,7 +5,13 @@ import useSWR from "swr";
 import toast from "react-hot-toast";
 import Form from "../Form";
 
-export default function BottomSheet({ onClose, id, name, category }) {
+export default function BottomSheet({
+  onClose,
+  id,
+  name,
+  category,
+  mutateCounter,
+}) {
   const { mutate } = useSWR("/api/entries");
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -14,6 +20,7 @@ export default function BottomSheet({ onClose, id, name, category }) {
     const response = await fetch(`/api/entries/${id}`, { method: "DELETE" });
     if (response.ok) {
       mutate();
+      mutateCounter();
       onClose();
       toast.success("Successfully deleted your Activity.");
     } else {

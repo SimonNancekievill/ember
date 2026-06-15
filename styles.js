@@ -31,6 +31,7 @@ export default createGlobalStyle`
 h1, h2, h3, h4, h5, h6, p, label{
 margin: 0;
 text-transform: lowercase;
+color: var(--primary-grey);
 }
 
 
