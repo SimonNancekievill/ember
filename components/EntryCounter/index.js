@@ -47,7 +47,7 @@ const StyledTitle = styled.p`
   font-size: 24px;
   font-weight: 500;
 `;
-const StyledCount = styled.h3`
+const StyledCount = styled.p`
   grid-area: count;
   font-size: 96px;
   font-weight: 800;
