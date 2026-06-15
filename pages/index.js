@@ -38,10 +38,17 @@ export default function HomePage() {
     }
   }
 
-  if (isLoading) return <p>sorting your activities…</p>;
+  if (isLoading) return;
+  <StyledPageWrapper>
+    <StyledSubtitle>sorting your activities…</StyledSubtitle>
+  </StyledPageWrapper>;
 
   if (!entries || error) {
-    return <h1>Oops… something went wrong.</h1>;
+    return (
+      <StyledPageWrapper>
+        <StyledSubtitle>Oops… something went wrong.</StyledSubtitle>
+      </StyledPageWrapper>
+    );
   }
 
   return (
@@ -97,4 +104,12 @@ const StyledSubtitle = styled.h2`
 
 const StyledTitelWrapper = styled.div`
   padding: 24px 48px;
+`;
+
+const StyledPageWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
 `;
