@@ -7,14 +7,14 @@ export default function Form({ onSubmit, isEditMode, name, category }) {
       <StyledForm onSubmit={onSubmit} $isEditMode={isEditMode}>
         <StyledActivityLabel htmlFor="name">
           <span>
-            Today I managed to:
+            I chose to
             <small>*</small>
           </span>
           <StyledTextInput
             id="name"
             name="name"
             type="text"
-            placeholder="brushed my teeth"
+            placeholder="brush my teeth"
             defaultValue={name}
             required
           />
@@ -40,7 +40,7 @@ export default function Form({ onSubmit, isEditMode, name, category }) {
         {isEditMode ? (
           <Button>save & close</Button>
         ) : (
-          <Button>Time spent for me</Button>
+          <Button>that&apos;s choosing myself </Button>
         )}
       </StyledForm>
     </FormWrapper>
