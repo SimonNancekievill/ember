@@ -3,7 +3,7 @@ import Button from "../Button";
 
 export default function Form({ onSubmit, isEditMode, name, category }) {
   return (
-    <FormWrapper>
+    <FormWrapper $isEditMode={isEditMode}>
       <StyledForm onSubmit={onSubmit} $isEditMode={isEditMode}>
         <StyledActivityLabel htmlFor="name">
           <span>
@@ -14,6 +14,7 @@ export default function Form({ onSubmit, isEditMode, name, category }) {
             id="name"
             name="name"
             type="text"
+            placeholder="brushed my teeth"
             defaultValue={name}
             required
           />
@@ -36,9 +37,9 @@ export default function Form({ onSubmit, isEditMode, name, category }) {
           </StyledSelect>
         </StyledCategoryLabel>
         {isEditMode ? (
-          <Button $variant="form">save & close</Button>
+          <Button>save & close</Button>
         ) : (
-          <Button $variant="form">Time spend for me</Button>
+          <Button>Time spent for me</Button>
         )}
       </StyledForm>
     </FormWrapper>
@@ -46,7 +47,8 @@ export default function Form({ onSubmit, isEditMode, name, category }) {
 }
 
 const FormWrapper = styled.div`
-  padding: 16px 48px 0px 48px;
+  padding: ${(props) => (props.$isEditMode ? "0" : "16px 48px 0px 48px")};
+  width: 100%;
 `;
 
 const StyledForm = styled.form`
@@ -54,26 +56,28 @@ const StyledForm = styled.form`
   flex-direction: column;
   align-items: flex-start;
   height: ${(props) => (props.$isEditMode ? "auto" : "276px")};
-  width: 320px;
+  width: 100%;
   gap: 24px;
   border-radius: 8px;
   padding: 24px;
-  background-color: #fff;
+  background-color: var(--primary-white);
   border: ${(props) => (props.$isEditMode ? "1px solid #d9d9d9" : "none")};
 `;
 
 const StyledTextInput = styled.input`
   border-radius: 8px;
   padding: 8px 16px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid var(--tertiary-grey);
   width: 100%;
+  font-size: 16px;
 `;
 
 const StyledSelect = styled.select`
   border-radius: 8px;
   padding: 8px 16px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid var(--tertiary-grey);
   width: 100%;
+  font-size: 16px;
   background-color: transparent;
 `;
 

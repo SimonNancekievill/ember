@@ -13,6 +13,19 @@ export default function ActivityListItem({ name, date, category, id }) {
     year: "numeric",
   });
 
+  function getCategoryColor(category) {
+    switch (category) {
+      case "movement":
+        return "var(--movement-yellow)";
+      case "home":
+        return "var(--home-indigo)";
+      case "self care":
+        return "var(--selfcare-mint)";
+      default:
+        return "var(--tertiary-grey)";
+    }
+  }
+
   return (
     <StyledItem>
       <Button
@@ -32,12 +45,7 @@ export default function ActivityListItem({ name, date, category, id }) {
       )}
       <StyledName>{name}</StyledName>
       <StyledSection>
-        <StyledImage
-          src="/images/placeholder.png"
-          width={48}
-          height={48}
-          alt="placeholder"
-        />
+        <StyledCircle $color={getCategoryColor(category)} />
         <StyledDate>{formattedDate}</StyledDate>
         <StyledCategory>{category}</StyledCategory>
       </StyledSection>
@@ -51,43 +59,47 @@ const StyledItem = styled.li`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  height: 147px;
-  width: 320px;
+  min-height: 147px;
+  width: 100%;
   gap: 16px;
   border-radius: 8px;
-  padding: 8px 32px;
-  background-color: #fff;
+  padding: 16px 32px;
+  background-color: var(--primary-white);
 `;
 
 const StyledSection = styled.section`
   display: grid;
   margin-top: 16px;
   column-gap: 12px;
+  align-items: center;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto auto;
   grid-template-areas:
-    "image date"
-    "image category";
+    "circle date"
+    "circle category";
 `;
 
 const StyledName = styled.h2`
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 const StyledDate = styled.p`
   grid-area: date;
   font-weight: bold;
-  color: #757575;
+  color: var(--secondary-grey);
   line-height: 0.9;
 `;
-const StyledImage = styled(Image)`
-  grid-area: image;
-  background-color: #e6e6e6;
+
+const StyledCircle = styled.div`
+  height: 48px;
+  width: 48px;
   border-radius: 50%;
+  grid-area: circle;
+  background-color: ${(props) => props.$color};
 `;
 
 const StyledCategory = styled.p`
   grid-area: category;
-  color: #b3b3b3;
+  color: var(--tertiary-grey);
   line-height: 0.9;
 `;
