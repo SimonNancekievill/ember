@@ -17,6 +17,7 @@ export default createGlobalStyle`
   --movement-yellow: #FEBC2F;
   --selfcare-mint: #00C8B3;
   --home-indigo: #6155F5;
+  --social-pink: #FF2D55;
 
 
 

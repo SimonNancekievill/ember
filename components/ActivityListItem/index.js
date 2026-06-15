@@ -21,6 +21,8 @@ export default function ActivityListItem({ name, date, category, id }) {
         return "var(--home-indigo)";
       case "self care":
         return "var(--selfcare-mint)";
+      case "social":
+        return "var(--social-pink)";
       default:
         return "var(--tertiary-grey)";
     }

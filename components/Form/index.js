@@ -31,9 +31,10 @@ export default function Form({ onSubmit, isEditMode, name, category }) {
             required
           >
             <option value="">select a category</option>
-            <option value="home">Home</option>
-            <option value="movement">Movement</option>
             <option value="self care">Self care</option>
+            <option value="movement">Movement</option>
+            <option value="social">Social</option>
+            <option value="home">Home</option>
           </StyledSelect>
         </StyledCategoryLabel>
         {isEditMode ? (
