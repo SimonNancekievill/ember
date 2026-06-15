@@ -99,7 +99,8 @@ const ButtonWrapper = styled.div`
 `;
 
 const StyledTitle = styled.h1`
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 48px;
 `;
 const StyledSubtitle = styled.h2`
   color: var(--tertiary-grey);
