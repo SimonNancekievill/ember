@@ -47,8 +47,8 @@ export default function HomePage() {
   return (
     <>
       <StyledTitelWrapper>
-        <StyledTitel>hi simon,</StyledTitel>
-        <StyledSubtitel>good to see you!</StyledSubtitel>
+        <StyledTitle>hi simon,</StyledTitle>
+        <StyledSubtitle>good to see you!</StyledSubtitle>
       </StyledTitelWrapper>
 
       {isActive ? (
@@ -87,14 +87,14 @@ const ButtonWrapper = styled.div`
   padding: 24px 48px 0px 48px;
 `;
 
-const StyledTitel = styled.h1`
+const StyledTitle = styled.h1`
   font-weight: 500;
 `;
-const StyledSubtitel = styled.h2`
+const StyledSubtitle = styled.h2`
   color: var(--tertiary-grey);
   font-weight: 400;
 `;
 
 const StyledTitelWrapper = styled.div`
-  padding: 24px 48px 24px 48px;
+  padding: 24px 48px;
 `;

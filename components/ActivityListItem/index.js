@@ -59,11 +59,11 @@ const StyledItem = styled.li`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  height: 147px;
+  min-height: 147px;
   width: 100%;
   gap: 16px;
   border-radius: 8px;
-  padding: 8px 32px;
+  padding: 16px 32px;
   background-color: var(--primary-white);
 `;
 

@@ -20,7 +20,6 @@ export default createGlobalStyle`
 
 
 
-
 }
   *,
   *::before,
@@ -28,8 +27,9 @@ export default createGlobalStyle`
     box-sizing: border-box;
     text-transform: lowercase;
   }
-h1, h2, h3, h4, h5, h6, p{
+h1, h2, h3, h4, h5, h6, p, label{
 margin: 0;
+text-transform: lowercase;
 }
 
 
@@ -56,7 +56,7 @@ margin: 0;
 
   @font-face {
     font-family: "Overused Grotesk";
-    src: url("/fonts/OverusedGrotesk-VF.ttf") format("woff2-variations");
+    src: url("/fonts/OverusedGrotesk-VF.ttf") format("truetype-variations");
     font-weight: 300 900;
 }
 
