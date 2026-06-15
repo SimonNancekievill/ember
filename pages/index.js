@@ -9,6 +9,7 @@ import EntryCounter from "@/components/EntryCounter";
 
 export default function HomePage() {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
+  const { data: entryCount, mutate: mutateCounter } = useSWR("/api/counter");
   const [isActive, setIsActive] = useState(false);
 
   async function handleSubmit(event) {
@@ -31,6 +32,7 @@ export default function HomePage() {
 
     if (response.ok) {
       mutate();
+      mutateCounter();
       setIsActive(!isActive);
       toast.success("Successfully created your Activity.");
       event.target.reset();
@@ -60,7 +62,7 @@ export default function HomePage() {
         <StyledTitle>hi simon,</StyledTitle>
         <StyledSubtitle>good to see you!</StyledSubtitle>
       </StyledTitelWrapper>
-      <EntryCounter />
+      <EntryCounter entryCount={entryCount} />
 
       {isActive ? (
         <>
@@ -87,7 +89,7 @@ export default function HomePage() {
           </Button>
         </ButtonWrapper>
       )}
-      <ActivityList entries={entries} />
+      <ActivityList entries={entries} mutateCounter={mutateCounter} />
     </>
   );
 }

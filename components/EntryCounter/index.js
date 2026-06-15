@@ -1,19 +1,19 @@
-import useSWR from "swr";
 import styled from "styled-components";
 
-export default function EntryCounter() {
-  const { data: entryCount } = useSWR("/api/counter");
-
-  return (
-    <StyledCardWrapper>
-      <StyledCard>
-        <StyledSection>
-          <StyledTitle>times you chose yourself</StyledTitle>
-          <StyledCount>{entryCount}</StyledCount>
-        </StyledSection>
-      </StyledCard>
-    </StyledCardWrapper>
-  );
+export default function EntryCounter({ entryCount }) {
+  if (entryCount > 0) {
+    return (
+      <StyledCardWrapper>
+        <StyledCard>
+          <StyledSection>
+            <StyledTitle>times you chose yourself</StyledTitle>
+            <StyledCount>{entryCount}</StyledCount>
+          </StyledSection>
+        </StyledCard>
+      </StyledCardWrapper>
+    );
+  }
+  return;
 }
 
 const StyledCardWrapper = styled.div`
@@ -47,7 +47,7 @@ const StyledTitle = styled.h2`
   font-size: 24px;
   font-weight: 500;
 `;
-const StyledCount = styled.h2`
+const StyledCount = styled.h3`
   grid-area: count;
   font-size: 96px;
   font-weight: 800;
