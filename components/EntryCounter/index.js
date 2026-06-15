@@ -13,7 +13,7 @@ export default function EntryCounter({ entryCount }) {
       </StyledCardWrapper>
     );
   }
-  return;
+  return null;
 }
 
 const StyledCardWrapper = styled.div`
