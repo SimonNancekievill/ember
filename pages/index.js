@@ -38,10 +38,12 @@ export default function HomePage() {
     }
   }
 
-  if (isLoading) return;
-  <StyledPageWrapper>
-    <StyledSubtitle>sorting your activities…</StyledSubtitle>
-  </StyledPageWrapper>;
+  if (isLoading)
+    return (
+      <StyledPageWrapper>
+        <StyledSubtitle>sorting your activities…</StyledSubtitle>
+      </StyledPageWrapper>
+    );
 
   if (!entries || error) {
     return (
