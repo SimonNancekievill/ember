@@ -5,6 +5,7 @@ import { useState } from "react";
 import Button from "@/components/Button";
 import styled from "styled-components";
 import Form from "@/components/Form";
+import EntryCounter from "@/components/EntryCounter";
 
 export default function HomePage() {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
@@ -59,6 +60,7 @@ export default function HomePage() {
         <StyledTitle>hi simon,</StyledTitle>
         <StyledSubtitle>good to see you!</StyledSubtitle>
       </StyledTitelWrapper>
+      <EntryCounter />
 
       {isActive ? (
         <>
