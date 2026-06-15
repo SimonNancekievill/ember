@@ -42,7 +42,7 @@ const StyledSection = styled.section`
     "title count"
     "title count";
 `;
-const StyledTitle = styled.h2`
+const StyledTitle = styled.p`
   grid-area: title;
   font-size: 24px;
   font-weight: 500;
