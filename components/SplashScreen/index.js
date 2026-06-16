@@ -1,15 +1,11 @@
 import AffirmationDisplay from "../AffirmationDisplay";
 import styled from "styled-components";
-import useAffiramtion from "@/hooks/useAffirmation";
 import { useEffect, useState } from "react";
 
-export default function SplashScreen({ onComplete }) {
-  const { affirmation, isLoading } = useAffiramtion();
+export default function SplashScreen({ onComplete, affirmation }) {
   const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    if (isLoading) return;
-
     const timer = setTimeout(() => {
       setIsVisible(false);
       setTimeout(onComplete, 500);
@@ -19,7 +15,7 @@ export default function SplashScreen({ onComplete }) {
       setTimeout(timer);
     }
     return cleanUp();
-  }, [isLoading, onComplete]);
+  }, [onComplete]);
 
   function handleSkip() {
     setIsVisible(false);
@@ -30,7 +26,7 @@ export default function SplashScreen({ onComplete }) {
   return (
     <StyledOverlay onClick={handleSkip}>
       <StyledSplash>
-        <AffirmationDisplay>{affirmation}</AffirmationDisplay>
+        <AffirmationDisplay affirmation={affirmation} />
       </StyledSplash>
     </StyledOverlay>
   );

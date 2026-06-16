@@ -1,12 +1,19 @@
 import SplashScreen from "@/components/SplashScreen";
 import HomePage from "@/components/HomePage";
 import { useState } from "react";
+import useAffiramtion from "@/hooks/useAffirmation";
 
 export default function Page() {
+  const { affirmation, isLoading } = useAffiramtion();
   const [showSplash, setShowSplash] = useState(true);
 
-  if (showSplash) {
-    return <SplashScreen onComplete={() => setShowSplash(false)} />;
+  if (isLoading || showSplash) {
+    return (
+      <SplashScreen
+        onComplete={() => setShowSplash(false)}
+        affirmation={affirmation}
+      />
+    );
   }
-  return <HomePage />;
+  return <HomePage affirmation={affirmation} />;
 }

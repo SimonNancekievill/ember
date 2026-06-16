@@ -1,11 +1,6 @@
 import styled from "styled-components";
-import useAffiramtion from "@/hooks/useAffirmation";
 
-export default function AffirmationDisplay() {
-  const { affirmation, isLoading } = useAffiramtion();
-  if (isLoading) {
-    return <StyledSubtitle>loading…</StyledSubtitle>;
-  }
+export default function AffirmationDisplay({ affirmation }) {
   return <StyledSubtitle>{affirmation}</StyledSubtitle>;
 }
 

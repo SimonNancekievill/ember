@@ -8,7 +8,7 @@ import Form from "@/components/Form";
 import AffirmationDisplay from "@/components/AffirmationDisplay";
 import EntryCounter from "@/components/EntryCounter";
 
-export default function HomePage() {
+export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
   const { data: entryCount, mutate: mutateCounter } = useSWR("/api/counter");
   const [isActive, setIsActive] = useState(false);
@@ -61,7 +61,7 @@ export default function HomePage() {
     <StyledMainPageWrapper>
       <StyledTitelWrapper>
         <StyledTitle>hi simon,</StyledTitle>
-        <AffirmationDisplay />
+        <AffirmationDisplay affirmation={affirmation} />
       </StyledTitelWrapper>
       <EntryCounter entryCount={entryCount} />
 
