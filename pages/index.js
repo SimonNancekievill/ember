@@ -5,6 +5,7 @@ import { useState } from "react";
 import Button from "@/components/Button";
 import styled from "styled-components";
 import Form from "@/components/Form";
+import AffirmationDisplay from "@/components/AffirmationDisplay";
 import EntryCounter from "@/components/EntryCounter";
 
 export default function HomePage() {
@@ -60,7 +61,7 @@ export default function HomePage() {
     <>
       <StyledTitelWrapper>
         <StyledTitle>hi simon,</StyledTitle>
-        <StyledSubtitle>good to see you!</StyledSubtitle>
+        <AffirmationDisplay />
       </StyledTitelWrapper>
       <EntryCounter entryCount={entryCount} />
 
