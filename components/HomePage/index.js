@@ -9,8 +9,8 @@ import AffirmationDisplay from "@/components/AffirmationDisplay";
 import EntryCounter from "@/components/EntryCounter";
 
 export default function HomePage() {
-  const { data: entries, isLoading, error, mutate } = useSWR("@/api/entries");
-  const { data: entryCount, mutate: mutateCounter } = useSWR("@/api/counter");
+  const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
+  const { data: entryCount, mutate: mutateCounter } = useSWR("/api/counter");
   const [isActive, setIsActive] = useState(false);
 
   async function handleSubmit(event) {
@@ -23,7 +23,7 @@ export default function HomePage() {
       category: formData.get("category"),
     };
 
-    const response = await fetch("@/api/entries", {
+    const response = await fetch("/api/entries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export default function HomePage() {
   }
 
   return (
-    <>
+    <StyledMainPageWrapper>
       <StyledTitelWrapper>
         <StyledTitle>hi simon,</StyledTitle>
         <AffirmationDisplay />
@@ -91,7 +91,7 @@ export default function HomePage() {
         </ButtonWrapper>
       )}
       <ActivityList entries={entries} mutateCounter={mutateCounter} />
-    </>
+    </StyledMainPageWrapper>
   );
 }
 
@@ -120,4 +120,17 @@ const StyledPageWrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 100vh;
+`;
+
+const StyledMainPageWrapper = styled.div`
+  animation: fadeIn 0.5s ease-in;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 `;
