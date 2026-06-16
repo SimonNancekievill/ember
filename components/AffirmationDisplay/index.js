@@ -1,36 +1,8 @@
 import styled from "styled-components";
-import { useState, useEffect } from "react";
+import useAffiramtion from "@/hooks/useAffirmation";
 
 export default function AffirmationDisplay() {
-  const [affirmation, setAffirmation] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    async function loadAffirmation() {
-      const today = new Date().toISOString().split("T")[0];
-      const cached = localStorage.getItem(`affirmation${today}`);
-
-      if (cached) {
-        setAffirmation(cached);
-        setIsLoading(false);
-      } else {
-        try {
-          const response = await fetch("/api/affirmation");
-          const data = await response.json();
-          const newAffirmation = data.affirmation;
-          setAffirmation(newAffirmation);
-          localStorage.setItem(`affirmation${today}`, newAffirmation);
-          setIsLoading(false);
-        } catch (error) {
-          console.error("Failed to fetch affirmation", error);
-          setAffirmation("glad you are here");
-          setIsLoading(false);
-        }
-      }
-    }
-    loadAffirmation();
-  }, []);
-
+  const { affirmation, isLoading } = useAffiramtion();
   if (isLoading) {
     return <StyledSubtitle>loading…</StyledSubtitle>;
   }
