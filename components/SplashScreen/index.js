@@ -12,9 +12,9 @@ export default function SplashScreen({ onComplete, affirmation }) {
     }, 3000);
 
     function cleanUp() {
-      setTimeout(timer);
+      clearTimeout(timer);
     }
-    return cleanUp();
+    return cleanUp;
   }, [onComplete]);
 
   function handleSkip() {
