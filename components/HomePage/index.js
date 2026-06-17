@@ -91,7 +91,7 @@ export default function HomePage({ affirmation }) {
           </Button>
         </ButtonWrapper>
       )}
-      <Calendar />
+      <Calendar entries={entries} />
       <ActivityList entries={entries} mutateCounter={mutateCounter} />
     </StyledMainPageWrapper>
   );
