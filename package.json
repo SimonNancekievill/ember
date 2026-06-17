@@ -17,6 +17,7 @@
     "mongoose": "^9.7.0",
     "next": "13.4.8",
     "react": "18.2.0",
+    "react-calendar": "^6.0.1",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.6.0",
     "styled-components": "^6.0.2",
