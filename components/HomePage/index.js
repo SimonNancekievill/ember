@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Form from "@/components/Form";
 import AffirmationDisplay from "@/components/AffirmationDisplay";
 import EntryCounter from "@/components/EntryCounter";
+import Calendar from "@/components/Calendar";
 
 export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
@@ -90,6 +91,7 @@ export default function HomePage({ affirmation }) {
           </Button>
         </ButtonWrapper>
       )}
+      <Calendar />
       <ActivityList entries={entries} mutateCounter={mutateCounter} />
     </StyledMainPageWrapper>
   );
