@@ -91,7 +91,9 @@ export default function HomePage({ affirmation }) {
           </Button>
         </ButtonWrapper>
       )}
-      <Calendar entries={entries} />
+      <CalendarWrapper>
+        <Calendar entries={entries} />
+      </CalendarWrapper>
       <ActivityList entries={entries} mutateCounter={mutateCounter} />
     </StyledMainPageWrapper>
   );
@@ -122,6 +124,10 @@ const StyledPageWrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 100vh;
+`;
+
+const CalendarWrapper = styled.div`
+  padding: 24px 48px;
 `;
 
 const StyledMainPageWrapper = styled.div`
