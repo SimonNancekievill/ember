@@ -8,11 +8,17 @@ import Form from "@/components/Form";
 import AffirmationDisplay from "@/components/AffirmationDisplay";
 import EntryCounter from "@/components/EntryCounter";
 import Calendar from "@/components/Calendar";
+import ViewToggle from "../ViewToggle";
 
 export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
   const { data: entryCount, mutate: mutateCounter } = useSWR("/api/counter");
   const [isActive, setIsActive] = useState(false);
+  const [isToggled, setIsToggled] = useState(false);
+
+  function handleToggle() {
+    setIsToggled(!isToggled);
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -91,10 +97,14 @@ export default function HomePage({ affirmation }) {
           </Button>
         </ButtonWrapper>
       )}
-      <CalendarWrapper>
-        <Calendar entries={entries} />
-      </CalendarWrapper>
-      <ActivityList entries={entries} mutateCounter={mutateCounter} />
+      <ViewToggle onToggle={handleToggle} isToggled={isToggled} />
+      {isToggled ? (
+        <CalendarWrapper>
+          <Calendar entries={entries} />
+        </CalendarWrapper>
+      ) : (
+        <ActivityList entries={entries} mutateCounter={mutateCounter} />
+      )}
     </StyledMainPageWrapper>
   );
 }
@@ -102,7 +112,7 @@ export default function HomePage({ affirmation }) {
 const ButtonWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 24px 48px 0px 48px;
+  padding: 24px 48px 12px 48px;
 `;
 
 const StyledTitle = styled.h1`
