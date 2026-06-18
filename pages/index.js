@@ -4,10 +4,10 @@ import { useState } from "react";
 import useAffiramtion from "@/hooks/useAffirmation";
 
 export default function Page() {
-  const { affirmation, isLoading } = useAffiramtion();
+  const { affirmation } = useAffiramtion();
   const [showSplash, setShowSplash] = useState(true);
 
-  if (isLoading || showSplash) {
+  if (showSplash) {
     return (
       <SplashScreen
         onComplete={() => setShowSplash(false)}
