@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import { useState } from "react";
-import { getCalendarDates } from "/lib/calendarHelpers";
+import {
+  getCalendarDates,
+  groupEntriesByDate,
+  getCategoryColor,
+} from "@/lib/calendarHelpers";
 
 export default function Calendar({ entries, onDayClick }) {
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(new Date().getMonth());
 
   const dates = getCalendarDates(year, month);
+  const entriesByDate = groupEntriesByDate(entries);
   const monthName = new Date(year, month).toLocaleString("en-US", {
     month: "long",
   });
@@ -48,21 +53,31 @@ export default function Calendar({ entries, onDayClick }) {
       </WeekDays>
 
       <Grid>
-        {dates.map((dateObj, index) => (
-          <Day
-            key={index}
-            $isCurrentMonth={dateObj.isCurrentMonth}
-            onClick={() => {
-              if (dateObj.isCurrentMonth) {
-                onDayClick?.(
-                  new Date(dateObj.year, dateObj.month, dateObj.date)
-                );
-              }
-            }}
-          >
-            {dateObj.date}
-          </Day>
-        ))}
+        {dates.map((dateObj, index) => {
+          const dateStr = `${dateObj.year}-${String(dateObj.month + 1).padStart(2, "0")}-${String(dateObj.date).padStart(2, "0")}`;
+          const dayEntries = entriesByDate[dateStr] || [];
+
+          return (
+            <Day
+              key={index}
+              $isCurrentMonth={dateObj.isCurrentMonth}
+              onClick={() => {
+                if (dateObj.isCurrentMonth) {
+                  onDayClick?.(
+                    new Date(dateObj.year, dateObj.month, dateObj.date)
+                  );
+                }
+              }}
+            >
+              <DateNumber>{dateObj.date}</DateNumber>
+              <DotsContainer>
+                {dayEntries.slice(0, 4).map((entry, index) => (
+                  <Dot key={index} $color={getCategoryColor(entry.category)} />
+                ))}
+              </DotsContainer>
+            </Day>
+          );
+        })}
       </Grid>
     </CalendarWrapper>
   );
@@ -72,6 +87,7 @@ const CalendarWrapper = styled.div`
   padding: 16px;
   background: var(--primary-white);
   border-radius: 8px;
+  width: 100%;
 `;
 
 const Header = styled.div`
@@ -113,6 +129,30 @@ const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 4px;
+  width: 100%;
+`;
+
+const DotsContainer = styled.div`
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1px;
+  justify-content: center;
+`;
+
+const Dot = styled.div`
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: ${(props) => props.$color};
+  flex-shrink: 0;
+`;
+
+const DateNumber = styled.span`
+  display: block;
+  font-size: 14px;
 `;
 
 const Day = styled.button`
@@ -123,9 +163,13 @@ const Day = styled.button`
     props.$isCurrentMonth ? "var(--primary-white)" : "var(--background-light)"};
   color: ${(props) =>
     props.$isCurrentMonth ? "var(--primary-text)" : "var(--tertiary-grey)"};
-  font-size: 14px;
   cursor: ${(props) => (props.$isCurrentMonth ? "pointer" : "default")};
-  padding: 0;
+  padding: 4px 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 
   &:hover {
     background: ${(props) =>
