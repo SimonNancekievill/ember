@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { useState } from "react";
 import ActivityList from "../ActivityList";
 
-export default function DayDetailSheet({ activities }) {
+export default function DayDetailSheet({ activities, onClose }) {
   const [selectedActivities, setSelectedActivities] = useState(null);
 
   return (
-    <Overlay>
+    <Overlay onClick={onClose}>
       <Sheet onClick={(event) => event.stopPropagation()}>
         <StyledBar />
         <ActivityList entries={activities} />

@@ -16,7 +16,7 @@ export default function HomePage({ affirmation }) {
   const { data: entryCount, mutate: mutateCounter } = useSWR("/api/counter");
   const [isActive, setIsActive] = useState(false);
   const [isCalendarView, setIsCalendarView] = useState(false);
-  const [isSelectedDay, setIsSelectedDay] = useState(false);
+  const [isSelectedDay, setIsSelectedDay] = useState(null);
 
   function handleToggle() {
     setIsCalendarView(!isCalendarView);
@@ -101,9 +101,22 @@ export default function HomePage({ affirmation }) {
       )}
       <ViewToggle onToggle={handleToggle} isCalendarView={isCalendarView} />
       <CalendarWrapper $visible={isCalendarView}>
-        <Calendar entries={entries} />
+        <Calendar entries={entries} onDayClick={setIsSelectedDay} />
       </CalendarWrapper>
-      <StyledListWrapper>
+      {isSelectedDay && (
+        <DayDetailSheet
+          date={isSelectedDay}
+          activities={entries.filter((event) => {
+            const entryDate = new Date(event.createdAt)
+              .toISOString()
+              .split("T")[0];
+            const selectedDate = isSelectedDay.toISOString().split("T")[0];
+            return entryDate === selectedDate;
+          })}
+          onClose={() => setIsSelectedDay(null)}
+        />
+      )}
+      <StyledListWrapper $visible={isCalendarView}>
         <ActivityList entries={entries} mutateCounter={mutateCounter} />
       </StyledListWrapper>
     </StyledMainPageWrapper>
