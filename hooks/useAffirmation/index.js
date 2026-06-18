@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import affirmations from "@/public/affirmations.json";
+import affirmations from "@/lib/affirmations.json";
 
 export default function useAffiramtion() {
   const [affirmation, setAffirmation] = useState("");
