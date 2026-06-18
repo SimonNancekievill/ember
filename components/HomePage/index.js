@@ -8,13 +8,15 @@ import Form from "@/components/Form";
 import AffirmationDisplay from "@/components/AffirmationDisplay";
 import EntryCounter from "@/components/EntryCounter";
 import Calendar from "@/components/Calendar";
-import ViewToggle from "../ViewToggle";
+import ViewToggle from "@/components/ViewToggle";
+import DayDetailSheet from "@/components/DayDetailSheet";
 
 export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
   const { data: entryCount, mutate: mutateCounter } = useSWR("/api/counter");
   const [isActive, setIsActive] = useState(false);
   const [isToggled, setIsToggled] = useState(false);
+  const [isSelectedDay, setIsSelectedDay] = useState(false);
 
   function handleToggle() {
     setIsToggled(!isToggled);
@@ -100,7 +102,7 @@ export default function HomePage({ affirmation }) {
       <ViewToggle onToggle={handleToggle} isToggled={isToggled} />
       {isToggled ? (
         <CalendarWrapper>
-          <Calendar entries={entries} />
+          <Calendar entries={entries} onDayClick={setIsSelectedDay} />
         </CalendarWrapper>
       ) : (
         <ActivityList entries={entries} mutateCounter={mutateCounter} />
