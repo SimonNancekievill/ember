@@ -1,10 +1,15 @@
 import styled from "styled-components";
+import { useState } from "react";
+import ActivityList from "../ActivityList";
 
-export default function DayDetailSheet() {
+export default function DayDetailSheet({ activities }) {
+  const [selectedActivities, setSelectedActivities] = useState(null);
+
   return (
     <Overlay>
       <Sheet onClick={(event) => event.stopPropagation()}>
         <StyledBar />
+        <ActivityList entries={activities} />
       </Sheet>
     </Overlay>
   );
