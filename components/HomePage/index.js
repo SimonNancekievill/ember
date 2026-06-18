@@ -8,16 +8,16 @@ import Form from "@/components/Form";
 import AffirmationDisplay from "@/components/AffirmationDisplay";
 import EntryCounter from "@/components/EntryCounter";
 import Calendar from "@/components/Calendar";
-import ViewToggle from "../ViewToggle";
+import ViewToggle from "@/components/ViewToggle";
 
 export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
   const { data: entryCount, mutate: mutateCounter } = useSWR("/api/counter");
   const [isActive, setIsActive] = useState(false);
-  const [isToggled, setIsToggled] = useState(false);
+  const [isCalendarView, setIsCalendarView] = useState(false);
 
   function handleToggle() {
-    setIsToggled(!isToggled);
+    setIsCalendarView(!isCalendarView);
   }
 
   async function handleSubmit(event) {
@@ -97,8 +97,8 @@ export default function HomePage({ affirmation }) {
           </Button>
         </ButtonWrapper>
       )}
-      <ViewToggle onToggle={handleToggle} isToggled={isToggled} />
-      {isToggled ? (
+      <ViewToggle onToggle={handleToggle} isCalendarView={isCalendarView} />
+      {isCalendarView ? (
         <CalendarWrapper>
           <Calendar entries={entries} />
         </CalendarWrapper>
