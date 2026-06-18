@@ -101,7 +101,7 @@ export default function HomePage({ affirmation }) {
       <CalendarWrapper $visible={isCalendarView}>
         <Calendar entries={entries} />
       </CalendarWrapper>
-      <StyledListWrapper>
+      <StyledListWrapper $visible={isCalendarView}>
         <ActivityList entries={entries} mutateCounter={mutateCounter} />
       </StyledListWrapper>
     </StyledMainPageWrapper>
