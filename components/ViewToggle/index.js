@@ -45,9 +45,8 @@ const Circle = styled.div`
   border-radius: 50%;
   position: absolute;
   left: 2px;
-  right: 2px;
   transform: ${(props) =>
-    props.$isActive ? "translateX(18px)" : "translateX()"};
+    props.$isActive ? "translateX(18px)" : "translateX(0)"};
   top: 2px;
   transition: transform 0.3s ease;
 `;

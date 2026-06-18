@@ -98,13 +98,12 @@ export default function HomePage({ affirmation }) {
         </ButtonWrapper>
       )}
       <ViewToggle onToggle={handleToggle} isCalendarView={isCalendarView} />
-      {isCalendarView ? (
-        <CalendarWrapper>
-          <Calendar entries={entries} />
-        </CalendarWrapper>
-      ) : (
+      <CalendarWrapper $visible={isCalendarView}>
+        <Calendar entries={entries} />
+      </CalendarWrapper>
+      <StyledListWrapper>
         <ActivityList entries={entries} mutateCounter={mutateCounter} />
-      )}
+      </StyledListWrapper>
     </StyledMainPageWrapper>
   );
 }
@@ -138,6 +137,10 @@ const StyledPageWrapper = styled.div`
 
 const CalendarWrapper = styled.div`
   padding: 24px 48px;
+  display: ${(props) => (props.$visible ? "block" : "none")};
+`;
+const StyledListWrapper = styled.div`
+  display: ${(props) => (props.$visible ? "none" : "block")};
 `;
 
 const StyledMainPageWrapper = styled.div`
