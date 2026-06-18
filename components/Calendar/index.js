@@ -39,11 +39,15 @@ export default function Calendar({ entries, onDayClick }) {
   return (
     <CalendarWrapper>
       <Header>
-        <NavButton onClick={handlePrevMonth}>←</NavButton>
+        <NavButton onClick={handlePrevMonth} aria-label="Previous month">
+          ←
+        </NavButton>
         <MonthYear>
           {monthName} {year}
         </MonthYear>
-        <NavButton onClick={handleNextMonth}>→</NavButton>
+        <NavButton onClick={handleNextMonth} aria-label="Next month">
+          →
+        </NavButton>
       </Header>
 
       <WeekDays>
@@ -59,7 +63,7 @@ export default function Calendar({ entries, onDayClick }) {
 
           return (
             <Day
-              key={index}
+              key={dateStr}
               $isCurrentMonth={dateObj.isCurrentMonth}
               onClick={() => {
                 if (dateObj.isCurrentMonth) {
@@ -72,7 +76,10 @@ export default function Calendar({ entries, onDayClick }) {
               <DateNumber>{dateObj.date}</DateNumber>
               <DotsContainer>
                 {dayEntries.slice(0, 4).map((entry, index) => (
-                  <Dot key={index} $color={getCategoryColor(entry.category)} />
+                  <Dot
+                    key={entry._id}
+                    $color={getCategoryColor(entry.category)}
+                  />
                 ))}
               </DotsContainer>
             </Day>
