@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Form from "@/components/Form";
 import AffirmationDisplay from "@/components/AffirmationDisplay";
 import EntryCounter from "@/components/EntryCounter";
+import Calendar from "@/components/Calendar";
 
 export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
@@ -90,6 +91,9 @@ export default function HomePage({ affirmation }) {
           </Button>
         </ButtonWrapper>
       )}
+      <CalendarWrapper>
+        <Calendar entries={entries} />
+      </CalendarWrapper>
       <ActivityList entries={entries} mutateCounter={mutateCounter} />
     </StyledMainPageWrapper>
   );
@@ -120,6 +124,10 @@ const StyledPageWrapper = styled.div`
   justify-content: center;
   width: 100%;
   height: 100vh;
+`;
+
+const CalendarWrapper = styled.div`
+  padding: 24px 48px;
 `;
 
 const StyledMainPageWrapper = styled.div`

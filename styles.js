@@ -37,7 +37,7 @@ color: var(--primary-grey);
 
   body {
     margin: 0;
-    font-family: Overused Grotesk, sans-serif;
+    font-family: Overused Grotesk, Arial, Helvetica, sans-serif;
     background-color: var(--primary-bg);
   } 
   ul {
