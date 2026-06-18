@@ -140,6 +140,7 @@ const DotsContainer = styled.div`
   display: flex;
   gap: 1px;
   justify-content: center;
+  align-items: center;
 `;
 
 const Dot = styled.div`
