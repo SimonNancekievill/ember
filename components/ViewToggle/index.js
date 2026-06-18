@@ -1,11 +1,17 @@
 import styled from "styled-components";
 
-export default function ViewToggle({ onToggle, isToggled }) {
+export default function ViewToggle({ onToggle, isCalendarView }) {
   return (
     <ToggleWrapper>
-      <p>{isToggled ? "calendar" : "list"}</p>
-      <ToggleButton onClick={onToggle} $view={isToggled}>
-        <Circle $isActive={isToggled} />
+      <p>{isCalendarView ? "calendar" : "list"}</p>
+      <ToggleButton
+        onClick={onToggle}
+        $view={isCalendarView}
+        aria-label={
+          isCalendarView ? "Switch to list view" : "Switch to calendar view"
+        }
+      >
+        <Circle $isActive={isCalendarView} />
       </ToggleButton>
     </ToggleWrapper>
   );
@@ -38,7 +44,9 @@ const Circle = styled.div`
   background-color: var(--primary-white);
   border-radius: 50%;
   position: absolute;
-  left: ${(props) => (props.$isActive ? "18px" : "2px")};
+  left: 2px;
+  transform: ${(props) =>
+    props.$isActive ? "translateX(18px)" : "translateX(0)"};
   top: 2px;
-  transition: left 0.3s ease;
+  transition: transform 0.3s ease;
 `;

@@ -9,17 +9,24 @@ import AffirmationDisplay from "@/components/AffirmationDisplay";
 import EntryCounter from "@/components/EntryCounter";
 import Calendar from "@/components/Calendar";
 import ViewToggle from "@/components/ViewToggle";
+<<<<<<< HEAD
 import DayDetailSheet from "@/components/DayDetailSheet";
+=======
+>>>>>>> main
 
 export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
   const { data: entryCount, mutate: mutateCounter } = useSWR("/api/counter");
   const [isActive, setIsActive] = useState(false);
+<<<<<<< HEAD
   const [isToggled, setIsToggled] = useState(false);
   const [isSelectedDay, setIsSelectedDay] = useState(false);
+=======
+  const [isCalendarView, setIsCalendarView] = useState(false);
+>>>>>>> main
 
   function handleToggle() {
-    setIsToggled(!isToggled);
+    setIsCalendarView(!isCalendarView);
   }
 
   async function handleSubmit(event) {
@@ -99,14 +106,22 @@ export default function HomePage({ affirmation }) {
           </Button>
         </ButtonWrapper>
       )}
+<<<<<<< HEAD
       <ViewToggle onToggle={handleToggle} isToggled={isToggled} />
       {isToggled ? (
         <CalendarWrapper>
           <Calendar entries={entries} onDayClick={setIsSelectedDay} />
         </CalendarWrapper>
       ) : (
+=======
+      <ViewToggle onToggle={handleToggle} isCalendarView={isCalendarView} />
+      <CalendarWrapper $visible={isCalendarView}>
+        <Calendar entries={entries} />
+      </CalendarWrapper>
+      <StyledListWrapper>
+>>>>>>> main
         <ActivityList entries={entries} mutateCounter={mutateCounter} />
-      )}
+      </StyledListWrapper>
     </StyledMainPageWrapper>
   );
 }
@@ -140,6 +155,10 @@ const StyledPageWrapper = styled.div`
 
 const CalendarWrapper = styled.div`
   padding: 24px 48px;
+  display: ${(props) => (props.$visible ? "block" : "none")};
+`;
+const StyledListWrapper = styled.div`
+  display: ${(props) => (props.$visible ? "none" : "block")};
 `;
 
 const StyledMainPageWrapper = styled.div`
