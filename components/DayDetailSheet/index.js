@@ -21,7 +21,7 @@ export default function DayDetailSheet({
           </DateHeader>
           <ActivityList
             entries={activities}
-            $errorHeight={true}
+            $compact
             mutateCounter={mutateCounter}
           />
         </SheetContent>
