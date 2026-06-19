@@ -103,7 +103,6 @@ export default function HomePage({ affirmation }) {
       <CalendarWrapper $visible={isCalendarView}>
         <Calendar entries={entries} onDayClick={setIsSelectedDay} />
       </CalendarWrapper>
-<<<<<<< HEAD
       {isSelectedDay && (
         <DayDetailSheet
           date={isSelectedDay}
@@ -117,8 +116,6 @@ export default function HomePage({ affirmation }) {
           onClose={() => setIsSelectedDay(null)}
         />
       )}
-=======
->>>>>>> main
       <StyledListWrapper $visible={isCalendarView}>
         <ActivityList entries={entries} mutateCounter={mutateCounter} />
       </StyledListWrapper>
