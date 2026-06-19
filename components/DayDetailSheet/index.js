@@ -1,15 +1,30 @@
 import styled from "styled-components";
-import { useState } from "react";
 import ActivityList from "../ActivityList";
 
-export default function DayDetailSheet({ activities, onClose }) {
-  const [selectedActivities, setSelectedActivities] = useState(null);
-
+export default function DayDetailSheet({
+  date,
+  activities,
+  onClose,
+  mutateCounter,
+}) {
   return (
     <Overlay onClick={onClose}>
       <Sheet onClick={(event) => event.stopPropagation()}>
         <StyledBar />
-        <ActivityList entries={activities} />
+        <SheetContent>
+          <DateHeader>
+            {date.toLocaleDateString("de-DE", {
+              day: "numeric",
+              month: "long",
+              year: "numeric",
+            })}
+          </DateHeader>
+          <ActivityList
+            entries={activities}
+            $errorHeight={true}
+            mutateCounter={mutateCounter}
+          />
+        </SheetContent>
       </Sheet>
     </Overlay>
   );
@@ -29,15 +44,20 @@ const Sheet = styled.div`
   position: fixed;
   z-index: 11;
   background-color: var(--primary-white);
-  height: 440px;
+  max-height: 50vh;
   width: 100%;
   left: 0;
   bottom: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 24px 48px 24px 48px;
   border-radius: 16px 16px 0px 0px;
+`;
+
+const SheetContent = styled.div`
+  width: 100%;
+  overflow-y: auto;
+  margin-top: 16px;
 `;
 
 const StyledBar = styled.div`
@@ -49,4 +69,9 @@ const StyledBar = styled.div`
   height: 4px;
   background-color: var(--tertiary-grey);
   border-radius: 4px;
+`;
+const DateHeader = styled.h3`
+  margin: 24px 48px;
+  font-size: 16px;
+  color: var(--secondary-grey);
 `;

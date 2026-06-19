@@ -2,10 +2,15 @@ import ActivityListItem from "../ActivityListItem";
 import { Fragment } from "react";
 import styled from "styled-components";
 
-export default function ActivityList({ entries, mutateCounter }) {
+export default function ActivityList({
+  entries,
+  mutateCounter,
+  bgColor,
+  $errorHeight,
+}) {
   if (entries.length === 0) {
     return (
-      <StyledPageWrapper>
+      <StyledPageWrapper $errorHeight>
         <StyledSubtitle>
           nothing logged yet — that is okay, today is a new day
         </StyledSubtitle>
@@ -23,6 +28,7 @@ export default function ActivityList({ entries, mutateCounter }) {
               category={entry.category}
               id={entry._id}
               mutateCounter={mutateCounter}
+              $bgColor={bgColor}
             />
           </Fragment>
         );
@@ -42,7 +48,7 @@ const StyledPageWrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 100vh;
+  height: ${(props) => (props.$errorHeight ? "auto" : "100vh")};
   padding: 24px 48px;
 `;
 const StyledSubtitle = styled.h2`

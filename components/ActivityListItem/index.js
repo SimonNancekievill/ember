@@ -10,6 +10,7 @@ export default function ActivityListItem({
   category,
   id,
   mutateCounter,
+  $bgColor,
 }) {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -73,7 +74,8 @@ const StyledItem = styled.li`
   gap: 16px;
   border-radius: 8px;
   padding: 16px 32px;
-  background-color: var(--primary-white);
+  background-color: ${(props) =>
+    props.$bgColor ? "var(--primary-white)" : "var(--secondary-white)"};
 `;
 
 const StyledSection = styled.section`

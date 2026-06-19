@@ -106,18 +106,24 @@ export default function HomePage({ affirmation }) {
       {isSelectedDay && (
         <DayDetailSheet
           date={isSelectedDay}
+          mutateCounter={mutateCounter}
           activities={entries.filter((event) => {
             const entryDate = new Date(event.createdAt)
               .toISOString()
               .split("T")[0];
-            const selectedDate = isSelectedDay.toISOString().split("T")[0];
+
+            const selectedDate = `${isSelectedDay.getFullYear()}-${String(isSelectedDay.getMonth() + 1).padStart(2, "0")}-${String(isSelectedDay.getDate()).padStart(2, "0")}`;
             return entryDate === selectedDate;
           })}
           onClose={() => setIsSelectedDay(null)}
         />
       )}
       <StyledListWrapper $visible={isCalendarView}>
-        <ActivityList entries={entries} mutateCounter={mutateCounter} />
+        <ActivityList
+          entries={entries}
+          mutateCounter={mutateCounter}
+          bgColor={isCalendarView}
+        />
       </StyledListWrapper>
     </StyledMainPageWrapper>
   );
