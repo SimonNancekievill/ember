@@ -9,12 +9,14 @@ import AffirmationDisplay from "@/components/AffirmationDisplay";
 import EntryCounter from "@/components/EntryCounter";
 import Calendar from "@/components/Calendar";
 import ViewToggle from "@/components/ViewToggle";
+import DayDetailSheet from "@/components/DayDetailSheet";
 
 export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
   const { data: entryCount, mutate: mutateCounter } = useSWR("/api/counter");
   const [isActive, setIsActive] = useState(false);
   const [isCalendarView, setIsCalendarView] = useState(false);
+  const [isSelectedDay, setIsSelectedDay] = useState(null);
 
   function handleToggle() {
     setIsCalendarView(!isCalendarView);
@@ -99,10 +101,29 @@ export default function HomePage({ affirmation }) {
       )}
       <ViewToggle onToggle={handleToggle} isCalendarView={isCalendarView} />
       <CalendarWrapper $visible={isCalendarView}>
-        <Calendar entries={entries} />
+        <Calendar entries={entries} onDayClick={setIsSelectedDay} />
       </CalendarWrapper>
+      {isSelectedDay && (
+        <DayDetailSheet
+          date={isSelectedDay}
+          mutateCounter={mutateCounter}
+          activities={entries.filter((event) => {
+            const entryDate = new Date(event.createdAt)
+              .toISOString()
+              .split("T")[0];
+
+            const selectedDate = `${isSelectedDay.getFullYear()}-${String(isSelectedDay.getMonth() + 1).padStart(2, "0")}-${String(isSelectedDay.getDate()).padStart(2, "0")}`;
+            return entryDate === selectedDate;
+          })}
+          onClose={() => setIsSelectedDay(null)}
+        />
+      )}
       <StyledListWrapper $visible={isCalendarView}>
-        <ActivityList entries={entries} mutateCounter={mutateCounter} />
+        <ActivityList
+          entries={entries}
+          mutateCounter={mutateCounter}
+          bgColor={isCalendarView}
+        />
       </StyledListWrapper>
     </StyledMainPageWrapper>
   );
