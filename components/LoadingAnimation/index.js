@@ -20,7 +20,7 @@ const Circle = styled(motion.div)`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 4px solid var(--tertiary-grey);
+  border: 4px solid var(--secondary-white);
   border-top-color: var(--movement-yellow);
 `;
 const CircleWrapper = styled.div`

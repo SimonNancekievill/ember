@@ -195,9 +195,8 @@ const CalendarWrapper = styled.div`
 const StyledListWrapper = styled.div`
   display: ${(props) => (props.$visible ? "none" : "block")};
 `;
-
 const StyledMainPageWrapper = styled.div`
-  animation: fadeIn 0.5s ease-in;
+  animation: fadeIn 0.75s ease-in;
 
   @keyframes fadeIn {
     from {
