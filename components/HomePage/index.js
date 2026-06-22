@@ -10,6 +10,7 @@ import EntryCounter from "@/components/EntryCounter";
 import Calendar from "@/components/Calendar";
 import ViewToggle from "@/components/ViewToggle";
 import DayDetailSheet from "@/components/DayDetailSheet";
+import LoadingAnimation from "../LoadingAnimation";
 
 export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
@@ -53,9 +54,40 @@ export default function HomePage({ affirmation }) {
 
   if (isLoading)
     return (
-      <StyledPageWrapper>
-        <StyledSubtitle>sorting your activities…</StyledSubtitle>
-      </StyledPageWrapper>
+      <StyledMainPageWrapper>
+        <StyledTitelWrapper>
+          <StyledTitle>hi simon,</StyledTitle>
+          <AffirmationDisplay affirmation={affirmation} />
+        </StyledTitelWrapper>
+        <EntryCounter entryCount={entryCount} />
+
+        {isActive ? (
+          <>
+            <ButtonWrapper>
+              <Button
+                type="button"
+                aria-label="Close Activity Form"
+                $variant="cancel"
+                onClick={() => setIsActive(!isActive)}
+              >
+                Close
+              </Button>
+            </ButtonWrapper>
+            <Form onSubmit={handleSubmit} />
+          </>
+        ) : (
+          <ButtonWrapper>
+            <Button
+              type="button"
+              aria-label="Open Activity Form"
+              onClick={() => setIsActive(!isActive)}
+            >
+              Add new
+            </Button>
+          </ButtonWrapper>
+        )}
+        <LoadingAnimation />
+      </StyledMainPageWrapper>
     );
 
   if (!entries || error) {

@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 
 export default function LoadingAnimation() {
   return (
-    <div>
+    <CircleWrapper>
       <Circle
         animate={{ transform: "rotate(360deg)" }}
         transition={{
@@ -12,7 +12,7 @@ export default function LoadingAnimation() {
           ease: "linear",
         }}
       />
-    </div>
+    </CircleWrapper>
   );
 }
 
@@ -20,6 +20,13 @@ const Circle = styled(motion.div)`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 4px solid var(--secondary-grey);
+  border: 4px solid var(--tertiary-grey);
   border-top-color: var(--movement-yellow);
+`;
+const CircleWrapper = styled.div`
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
