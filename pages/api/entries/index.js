@@ -2,7 +2,7 @@ import dbConnect from "@/db/connect";
 import Entry from "@/db/models/Entry";
 
 export default async function handler(request, response) {
-  await new Promise((resolve) => setTimeout(resolve, 5000));
+  await new Promise((resolve) => setTimeout(resolve, 2500));
   await dbConnect();
   try {
     if (request.method === "GET") {

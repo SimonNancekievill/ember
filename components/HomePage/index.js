@@ -105,7 +105,6 @@ export default function HomePage({ affirmation }) {
         <AffirmationDisplay affirmation={affirmation} />
       </StyledTitelWrapper>
       <EntryCounter entryCount={entryCount} />
-
       {isActive ? (
         <>
           <ButtonWrapper>
