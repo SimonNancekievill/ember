@@ -10,6 +10,7 @@ import EntryCounter from "@/components/EntryCounter";
 import Calendar from "@/components/Calendar";
 import ViewToggle from "@/components/ViewToggle";
 import DayDetailSheet from "@/components/DayDetailSheet";
+import FilterButton from "../FilterButton";
 
 export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
@@ -99,7 +100,10 @@ export default function HomePage({ affirmation }) {
           </Button>
         </ButtonWrapper>
       )}
-      <ViewToggle onToggle={handleToggle} isCalendarView={isCalendarView} />
+      <OptionsWrapper>
+        <FilterButton />
+        <ViewToggle onToggle={handleToggle} isCalendarView={isCalendarView} />
+      </OptionsWrapper>
       <CalendarWrapper $visible={isCalendarView}>
         <Calendar entries={entries} onDayClick={setIsSelectedDay} />
       </CalendarWrapper>
@@ -175,4 +179,13 @@ const StyledMainPageWrapper = styled.div`
       opacity: 1;
     }
   }
+`;
+
+const OptionsWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 48px 0px 48px;
+  height: 24px;
 `;
