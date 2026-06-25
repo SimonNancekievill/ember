@@ -31,6 +31,7 @@ const StyledCard = styled.div`
   border-radius: 8px;
   padding: 16px 32px;
   background-color: var(--primary-white);
+  border-left: 4px solid var(--tertinary-orange);
 `;
 const StyledSection = styled.section`
   display: grid;
