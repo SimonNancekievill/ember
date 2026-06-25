@@ -6,6 +6,7 @@ const entrySchema = new Schema(
   {
     name: { type: String, required: true },
     category: { type: String },
+    owner: { type: String, required: true },
   },
   { timestamps: true }
 );
