@@ -18,6 +18,7 @@ export default function HomePage({ affirmation }) {
   const [isActive, setIsActive] = useState(false);
   const [isCalendarView, setIsCalendarView] = useState(false);
   const [isSelectedDay, setIsSelectedDay] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("all");
 
   function handleToggle() {
     setIsCalendarView(!isCalendarView);
@@ -101,11 +102,21 @@ export default function HomePage({ affirmation }) {
         </ButtonWrapper>
       )}
       <OptionsWrapper>
-        <FilterButton />
         <ViewToggle onToggle={handleToggle} isCalendarView={isCalendarView} />
+        <FilterButton
+          selectedCategory={selectedCategory}
+          onCategoryChange={setSelectedCategory}
+        />
       </OptionsWrapper>
       <CalendarWrapper $visible={isCalendarView}>
-        <Calendar entries={entries} onDayClick={setIsSelectedDay} />
+        <Calendar
+          entries={entries.filter((entry) =>
+            selectedCategory === "all"
+              ? true
+              : entry.category === selectedCategory
+          )}
+          onDayClick={setIsSelectedDay}
+        />
       </CalendarWrapper>
       {isSelectedDay && (
         <DayDetailSheet
@@ -124,7 +135,11 @@ export default function HomePage({ affirmation }) {
       )}
       <StyledListWrapper $visible={isCalendarView}>
         <ActivityList
-          entries={entries}
+          entries={entries.filter((entry) =>
+            selectedCategory === "all"
+              ? true
+              : entry.category === selectedCategory
+          )}
           mutateCounter={mutateCounter}
           bgColor={isCalendarView}
         />
@@ -183,9 +198,10 @@ const StyledMainPageWrapper = styled.div`
 
 const OptionsWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 24px 48px 6px 48px;
-  height: 24px;
+  justify-content: center;
+  gap: 6px;
+  padding: 24px 48px 0px 48px;
+  height: auto;
 `;

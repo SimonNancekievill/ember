@@ -10,6 +10,7 @@ export default createGlobalStyle`
   --primary-grey: #1E1E1E;
   --secondary-grey: #757575;
   --tertiary-grey: #B3B3B3;
+  --another-grey: #D9D9D9;
 
   --primary-button: #2C2C2C;
 

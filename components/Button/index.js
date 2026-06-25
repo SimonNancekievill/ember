@@ -38,4 +38,17 @@ export default styled.button`
       border: none;
       color: var(--primary-grey);
     `}
+
+    ${(props) =>
+    props.$variant === "filter" &&
+    css`
+      border-radius: 8px;
+      height: 24px;
+      width: auto;
+      border: none;
+      background-color: ${(props) =>
+        props.$active ? "var(--tertiary-grey)" : "var(--another-grey)"};
+      color: var(--primary-grey);
+      font-size: 12px;
+    `}
 `;
