@@ -6,7 +6,7 @@ export default function ViewToggle({ onToggle, isCalendarView }) {
     <ButtonWrapper>
       <Button
         $variant="view"
-        onClick={() => !isCalendarView && onToggle()}
+        onClick={() => isCalendarView && onToggle()}
         $active={!isCalendarView}
         aria-label="Switch to list view"
       >
@@ -14,7 +14,7 @@ export default function ViewToggle({ onToggle, isCalendarView }) {
       </Button>
       <Button
         $variant="view"
-        onClick={() => isCalendarView && onToggle()}
+        onClick={() => !isCalendarView && onToggle()}
         $active={isCalendarView}
         aria-label="Switch to calendar view"
       >
