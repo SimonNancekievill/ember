@@ -27,6 +27,12 @@ export default function HomePage({ affirmation }) {
   if (status !== "authenticated") {
     return (
       <StyledPageWrapper>
+        <Image
+          src={"/images/LOGO-Type.png"}
+          height={87}
+          width={256}
+          alt="ember type as a logo"
+        />
         <h2>Access denied!</h2>
         <LogIn />
       </StyledPageWrapper>
