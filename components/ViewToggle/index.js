@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function ViewToggle({ onToggle, isCalendarView }) {
   return (
     <ToggleWrapper>
-      <p>{isCalendarView ? "calendar" : "list"}</p>
+      <StyledParagraph>{isCalendarView ? "calendar" : "list"}</StyledParagraph>
       <ToggleButton
         onClick={onToggle}
         $view={isCalendarView}
@@ -21,10 +21,14 @@ const ToggleWrapper = styled.div`
   width: 100%;
   height: 24px;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  flex-direction: row-reverse;
+  justify-content: space-between;
   gap: 4px;
   align-items: center;
+`;
+
+const StyledParagraph = styled.p`
+  color: var(--primary-grey);
 `;
 
 const ToggleButton = styled.button`
@@ -33,7 +37,7 @@ const ToggleButton = styled.button`
   border-radius: 12px;
   border: none;
   background-color: ${(props) =>
-    props.$view ? "var(--secondary-grey)" : "var(--tertiary-grey)"};
+    props.$view ? "var(--secondary-orange)" : "var(--primary-orange)"};
   padding: 0;
   position: relative;
 `;
@@ -41,7 +45,7 @@ const ToggleButton = styled.button`
 const Circle = styled.div`
   width: 20px;
   height: 20px;
-  background-color: var(--primary-white);
+  background-color: var(--secondary-white);
   border-radius: 50%;
   position: absolute;
   transform: ${(props) =>
