@@ -186,6 +186,6 @@ const OptionsWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 48px 0px 48px;
+  padding: 24px 48px 6px 48px;
   height: 24px;
 `;
