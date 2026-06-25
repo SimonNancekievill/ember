@@ -10,7 +10,7 @@ import EntryCounter from "@/components/EntryCounter";
 import Calendar from "@/components/Calendar";
 import ViewToggle from "@/components/ViewToggle";
 import DayDetailSheet from "@/components/DayDetailSheet";
-import FilterButton from "../FilterButton";
+import FilterButton from "@/components/FilterButton";
 
 export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
@@ -19,6 +19,9 @@ export default function HomePage({ affirmation }) {
   const [isCalendarView, setIsCalendarView] = useState(false);
   const [isSelectedDay, setIsSelectedDay] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const filteredEntries = entries.filter((entry) =>
+    selectedCategory === "all" ? true : entry.category === selectedCategory
+  );
 
   function handleToggle() {
     setIsCalendarView(!isCalendarView);
@@ -109,14 +112,7 @@ export default function HomePage({ affirmation }) {
         />
       </OptionsWrapper>
       <CalendarWrapper $visible={isCalendarView}>
-        <Calendar
-          entries={entries.filter((entry) =>
-            selectedCategory === "all"
-              ? true
-              : entry.category === selectedCategory
-          )}
-          onDayClick={setIsSelectedDay}
-        />
+        <Calendar entries={filteredEntries} onDayClick={setIsSelectedDay} />
       </CalendarWrapper>
       {isSelectedDay && (
         <DayDetailSheet
@@ -135,11 +131,7 @@ export default function HomePage({ affirmation }) {
       )}
       <StyledListWrapper $visible={isCalendarView}>
         <ActivityList
-          entries={entries.filter((entry) =>
-            selectedCategory === "all"
-              ? true
-              : entry.category === selectedCategory
-          )}
+          entries={filteredEntries}
           mutateCounter={mutateCounter}
           bgColor={isCalendarView}
         />

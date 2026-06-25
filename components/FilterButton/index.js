@@ -5,7 +5,7 @@ export default function FilterButton({ selectedCategory, onCategoryChange }) {
   const categories = [
     { value: "all", label: "all" },
     { value: "home", label: "home" },
-    { value: "movment", label: "movement" },
+    { value: "movement", label: "movement" },
     { value: "self care", label: "self care" },
     { value: "social", label: "social" },
     { value: "other", label: "other" },
