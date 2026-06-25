@@ -71,9 +71,6 @@ export default function HomePage({ affirmation }) {
     selectedCategory === "all" ? true : entry.category === selectedCategory
   );
 
-  const filteredEntries = entries.filter((entry) =>
-    selectedCategory === "all" ? true : entry.category === selectedCategory
-  );
   return (
     <StyledMainPageWrapper>
       <StyledTitelWrapper>
