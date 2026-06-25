@@ -130,11 +130,7 @@ export default function HomePage({ affirmation }) {
         />
       )}
       <StyledListWrapper $visible={isCalendarView}>
-        <ActivityList
-          entries={filteredEntries}
-          mutateCounter={mutateCounter}
-          bgColor={isCalendarView}
-        />
+        <ActivityList entries={filteredEntries} mutateCounter={mutateCounter} />
       </StyledListWrapper>
     </StyledMainPageWrapper>
   );
