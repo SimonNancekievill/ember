@@ -13,6 +13,7 @@ import DayDetailSheet from "@/components/DayDetailSheet";
 import FilterButton from "@/components/FilterButton";
 import { useSession } from "next-auth/react";
 import LogIn from "../LogIn";
+import Image from "next/image";
 
 export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
@@ -21,7 +22,7 @@ export default function HomePage({ affirmation }) {
   const [isCalendarView, setIsCalendarView] = useState(false);
   const [isSelectedDay, setIsSelectedDay] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const { status } = useSession();
+  const { data: session, status } = useSession();
 
   if (status !== "authenticated") {
     return (
@@ -85,9 +86,17 @@ export default function HomePage({ affirmation }) {
 
   return (
     <StyledMainPageWrapper>
-      <LogIn />
+      <Header>
+        <Image
+          src={"/images/LOGO.png"}
+          height={64}
+          width={64}
+          alt="ember e as a logo"
+        />
+        <LogIn />
+      </Header>
       <StyledTitelWrapper>
-        <StyledTitle>hi simon,</StyledTitle>
+        <StyledTitle>hi {session?.user?.name?.split(" ")[0]},</StyledTitle>
         <AffirmationDisplay affirmation={affirmation} />
       </StyledTitelWrapper>
       <EntryCounter entryCount={entryCount} />
@@ -206,4 +215,13 @@ const OptionsWrapper = styled.div`
   gap: 6px;
   padding: 24px 48px 0px 48px;
   height: auto;
+`;
+
+const Header = styled.div`
+  display: flex;
+  height: auto;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 24px;
 `;

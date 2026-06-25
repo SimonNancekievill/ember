@@ -64,4 +64,14 @@ export default styled.button`
         props.$active ? "var(--primary-orange)" : "var(--tertiary-orange)"};
       color: var(--primary-white);
     `}
+    ${(props) =>
+    props.$variant === "signIn" &&
+    css`
+      border: none;
+      height: auto;
+      width: auto;
+      padding: 4px 12px;
+      background-color: transparent;
+      color: var(--tertiary-orange);
+    `}
 `;
