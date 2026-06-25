@@ -15,7 +15,7 @@ export default createGlobalStyle`
 
   --primary-orange: #E27A48;
   --secondary-orange: #DD6B41;
-  --tertinary-orange: #F4B8A0;
+  --tertiary-orange: #F4B8A0;
 
   --primary-button: #2C2C2C;
 

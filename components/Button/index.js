@@ -50,7 +50,7 @@ export default styled.button`
       background-color: transparent;
       border: solid 2px;
       border-color: ${(props) =>
-        props.$active ? "var(--primary-orange)" : "var(--tertinary-orange)"};
+        props.$active ? "var(--primary-orange)" : "var(--tertiary-orange)"};
       color: var(--primary-grey);
     `}
     ${(props) =>
@@ -61,7 +61,7 @@ export default styled.button`
       width: auto;
       padding: 4px 12px;
       background-color: ${(props) =>
-        props.$active ? "var(--primary-orange)" : "var(--tertinary-orange)"};
+        props.$active ? "var(--primary-orange)" : "var(--tertiary-orange)"};
       color: var(--primary-white);
     `}
 `;
