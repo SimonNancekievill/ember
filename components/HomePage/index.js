@@ -67,6 +67,9 @@ export default function HomePage({ affirmation }) {
       </StyledPageWrapper>
     );
   }
+  const filteredEntries = entries.filter((entry) =>
+    selectedCategory === "all" ? true : entry.category === selectedCategory
+  );
 
   const filteredEntries = entries.filter((entry) =>
     selectedCategory === "all" ? true : entry.category === selectedCategory
@@ -130,11 +133,7 @@ export default function HomePage({ affirmation }) {
         />
       )}
       <StyledListWrapper $visible={isCalendarView}>
-        <ActivityList
-          entries={filteredEntries}
-          mutateCounter={mutateCounter}
-          bgColor={isCalendarView}
-        />
+        <ActivityList entries={filteredEntries} mutateCounter={mutateCounter} />
       </StyledListWrapper>
     </StyledMainPageWrapper>
   );
