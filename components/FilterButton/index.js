@@ -15,7 +15,7 @@ export default function FilterButton({ selectedCategory, onCategoryChange }) {
     <FilterWrapper>
       {categories.map((category) => (
         <Button
-          $variant="filter"
+          $variant="options"
           key={category.value}
           onClick={() => onCategoryChange(category.value)}
           $active={selectedCategory === category.value}
@@ -31,8 +31,6 @@ const FilterWrapper = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
   flex-wrap: wrap;
   gap: 4px;
 `;

@@ -41,15 +41,27 @@ export default styled.button`
     `}
 
     ${(props) =>
-    props.$variant === "filter" &&
+    props.$variant === "options" &&
     css`
       border-radius: 8px;
-      height: 24px;
+      height: auto;
       width: auto;
-      border: none;
-      background-color: ${(props) =>
-        props.$active ? "var(--tertiary-grey)" : "var(--another-grey)"};
+      padding: 4px 12px;
+      background-color: transparent;
+      border: solid 2px;
+      border-color: ${(props) =>
+        props.$active ? "var(--primary-orange)" : "var(--tertinary-orange)"};
       color: var(--primary-grey);
-      font-size: 12px;
+    `}
+    ${(props) =>
+    props.$variant === "view" &&
+    css`
+      border-radius: 8px;
+      height: auto;
+      width: auto;
+      padding: 4px 12px;
+      background-color: ${(props) =>
+        props.$active ? "var(--primary-orange)" : "var(--tertinary-orange)"};
+      color: var(--primary-grey);
     `}
 `;
