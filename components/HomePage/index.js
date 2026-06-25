@@ -19,9 +19,6 @@ export default function HomePage({ affirmation }) {
   const [isCalendarView, setIsCalendarView] = useState(false);
   const [isSelectedDay, setIsSelectedDay] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const filteredEntries = entries.filter((entry) =>
-    selectedCategory === "all" ? true : entry.category === selectedCategory
-  );
 
   function handleToggle() {
     setIsCalendarView(!isCalendarView);
@@ -71,6 +68,9 @@ export default function HomePage({ affirmation }) {
     );
   }
 
+  const filteredEntries = entries.filter((entry) =>
+    selectedCategory === "all" ? true : entry.category === selectedCategory
+  );
   return (
     <StyledMainPageWrapper>
       <StyledTitelWrapper>
