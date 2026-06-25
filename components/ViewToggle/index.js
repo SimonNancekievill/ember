@@ -22,9 +22,9 @@ const ToggleWrapper = styled.div`
   height: 24px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
+  gap: 4px;
   align-items: center;
-  padding: 24px 48px 0px 48px;
 `;
 
 const ToggleButton = styled.button`
