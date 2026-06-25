@@ -70,8 +70,9 @@ export default styled.button`
       border: none;
       height: auto;
       width: auto;
-      padding: 4px 12px;
+      text-decoration: underline;
       background-color: transparent;
       color: var(--tertiary-orange);
+      font-weight: 600;
     `}
 `;

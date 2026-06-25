@@ -33,7 +33,6 @@ export default function HomePage({ affirmation }) {
           width={256}
           alt="ember type as a logo"
         />
-        <h2>Access denied!</h2>
         <LogIn />
       </StyledPageWrapper>
     );
@@ -228,6 +227,6 @@ const Header = styled.div`
   height: auto;
   flex-direction: row;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
   padding: 24px;
 `;

@@ -12,11 +12,8 @@ export default function LogIn() {
     );
   }
   return (
-    <>
-      Please sign in <br />
-      <Button $variant="signIn" onClick={() => signIn()}>
-        Sign in
-      </Button>
-    </>
+    <Button $variant="signIn" onClick={() => signIn()}>
+      Sign in
+    </Button>
   );
 }
