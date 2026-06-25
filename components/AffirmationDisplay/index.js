@@ -5,6 +5,6 @@ export default function AffirmationDisplay({ affirmation }) {
 }
 
 const StyledSubtitle = styled.h2`
-  color: var(--tertiary-grey);
+  color: var(--secondary-grey);
   font-weight: 400;
 `;

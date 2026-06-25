@@ -62,6 +62,6 @@ export default styled.button`
       padding: 4px 12px;
       background-color: ${(props) =>
         props.$active ? "var(--primary-orange)" : "var(--tertinary-orange)"};
-      color: var(--primary-grey);
+      color: var(--primary-white);
     `}
 `;
