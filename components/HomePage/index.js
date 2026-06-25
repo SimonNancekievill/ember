@@ -11,6 +11,8 @@ import Calendar from "@/components/Calendar";
 import ViewToggle from "@/components/ViewToggle";
 import DayDetailSheet from "@/components/DayDetailSheet";
 import FilterButton from "@/components/FilterButton";
+import { useSession } from "next-auth/react";
+import LogIn from "../LogIn";
 
 export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
@@ -19,6 +21,16 @@ export default function HomePage({ affirmation }) {
   const [isCalendarView, setIsCalendarView] = useState(false);
   const [isSelectedDay, setIsSelectedDay] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const { status } = useSession();
+
+  if (status !== "authenticated") {
+    return (
+      <StyledPageWrapper>
+        <h2>Access denied!</h2>
+        <LogIn />
+      </StyledPageWrapper>
+    );
+  }
 
   function handleToggle() {
     setIsCalendarView(!isCalendarView);
@@ -73,6 +85,7 @@ export default function HomePage({ affirmation }) {
 
   return (
     <StyledMainPageWrapper>
+      <LogIn />
       <StyledTitelWrapper>
         <StyledTitle>hi simon,</StyledTitle>
         <AffirmationDisplay affirmation={affirmation} />
@@ -157,6 +170,7 @@ const StyledTitelWrapper = styled.div`
 
 const StyledPageWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
