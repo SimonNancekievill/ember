@@ -7,7 +7,7 @@ import Onboarding from "@/components/Onboarding";
 
 export default function Page() {
   const { affirmation } = useAffirmation();
-  const { hasOnboarded, completeOnboarding, isReady } = useOnboarding();
+  const { hasOnboarded, completedOnboarding, isReady } = useOnboarding();
   const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function Page() {
     );
   }
   if (!hasOnboarded) {
-    return <Onboarding onComplete={completeOnboarding} />;
+    return <Onboarding onComplete={completedOnboarding} />;
   }
   return <HomePage affirmation={affirmation} />;
 }

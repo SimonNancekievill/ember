@@ -18,6 +18,7 @@ const slides = [
 ];
 
 export default function Onboarding({ onComplete }) {
+  console.log("onComplete:", onComplete);
   const [currentSlide, setCurrentSlide] = useState(0);
 
   function advance() {
