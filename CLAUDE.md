@@ -62,3 +62,15 @@ The `Button` component uses a `$variant` transient prop (prefixed with `$` to av
 
 ### AI affirmation
 `hooks/useAffirmation/index.js` picks a random affirmation from `lib/affirmations.json` once per day and caches it in `localStorage` keyed by today's date.
+
+### Onboarding flow
+`pages/index.js` is the flow orchestrator. The render order is:
+
+1. `!isReady` → `null` (waiting for localStorage to be read client-side)
+2. `showSplash` → `<SplashScreen>` (returning users only — daily affirmation)
+3. `!hasOnboarded` → `<Onboarding>` (first-time users only)
+4. else → `<HomePage>` (which gates on auth internally via `useSession`)
+
+`hooks/useOnboarding/index.js` manages the first-time flag (`emberOnboarded`) in `localStorage`, following the same pattern as `useAffirmation`. Returns `{ hasOnboarded, completeOnboarding, isReady }`. The `isReady` flag prevents a render flash before localStorage is read.
+
+`components/Onboarding/index.js` is a 3-slide intro carousel. Left/right half of the screen are split into clickable zones (`LeftZone`/`RightZone`) for back/advance. The orange decorative bubble position (`top-right`, `bottom-left`, `top-left`) is defined per slide in the `slides` array. Onboarding is **only stored in localStorage** — there is no DB flag.

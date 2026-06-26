@@ -135,6 +135,7 @@ const SkipButton = styled(Button)`
   width: auto;
   height: auto;
   color: var(--tertiary-grey);
+  z-index: 10;
 `;
 
 const LeftZone = styled.div`
