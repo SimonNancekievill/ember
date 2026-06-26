@@ -47,7 +47,11 @@ export default function Onboarding({ onComplete }) {
       </Button>
       <StyledTitle>{slides[currentSlide].title}</StyledTitle>
       <StyledBody>{slides[currentSlide].body}</StyledBody>
-      <Bar />
+      <Dots>
+        {slides.map((slide, index) => (
+          <Dot key={index} $active={index === currentSlide} />
+        ))}
+      </Dots>
     </StyledPageWrapper>
   );
 }
@@ -77,4 +81,16 @@ const Bar = styled.div`
   height: 4px;
   background-color: var(--tertiary-grey);
   border-radius: 4px;
+`;
+const Dots = styled.div`
+  display: flex;
+  gap: 8px;
+`;
+const Dot = styled.div`
+  height: 4px;
+  width: ${(props) => (props.$active ? "24px" : "8px")};
+  background-color: ${(props) =>
+    props.$active ? "var(--primary-orange)" : "var(--tertiary-grey)"};
+  border-radius: 4px;
+  transition: all 0.3 ease;
 `;
