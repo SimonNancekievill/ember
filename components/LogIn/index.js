@@ -34,7 +34,7 @@ export default function LogIn() {
         <FaGithub size={25} />
         log in with github
       </Button>
-      <Button $variant="signIn" onClick={() => setShowForm(true)}>
+      <Button $variant="secondary" onClick={() => setShowForm(true)}>
         log in for testing
       </Button>
       {showForm && (
@@ -65,7 +65,7 @@ export default function LogIn() {
             />
           </StyledActivityLabel>
           <Button
-            $variant="signIn"
+            $variant="logIn"
             type="submit"
             onClick={() =>
               signIn("credentials", { username, password, callbackUrl: "/" })

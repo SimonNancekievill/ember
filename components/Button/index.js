@@ -14,8 +14,8 @@ export default styled.button`
     props.$variant === "secondary" &&
     css`
       background-color: transparent;
-      border: 1px solid var(--primary-button);
-      color: var(--primary-button);
+      border: 1px solid var(--primary-orange);
+      color: var(--primary-orange);
     `}
 
   ${(props) =>
