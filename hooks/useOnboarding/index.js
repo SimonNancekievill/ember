@@ -6,7 +6,15 @@ export default function useOnboarding() {
   const [hasOnboarded, setHasOnboarded] = useState(false);
   const [isReady, setIsReady] = useState(false);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setHasOnboarded(localStorage.getItem(ONBOARDING_KEY) === "true");
+    setIsReady(true);
+  }, []);
 
-  return;
+  function CompletedOnboarding() {
+    localStorage.setItem(ONBOARDING_KEY, "ture");
+    setHasOnboarded(true);
+  }
+
+  return { hasOnboarded, CompletedOnboarding, isReady };
 }

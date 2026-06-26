@@ -1,11 +1,21 @@
 import SplashScreen from "@/components/SplashScreen";
 import HomePage from "@/components/HomePage";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useAffirmation from "@/hooks/useAffirmation";
+import useOnboarding from "@/hooks/useOnboarding";
 
 export default function Page() {
   const { affirmation } = useAffirmation();
+  const { hasOnboarded, completeOnboarding, isReady } = useOnboarding();
   const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    if (isReady) {
+      setShowSplash(hasOnboarded);
+    }
+  }, [isReady]);
+
+  if (!isReady) return null;
 
   if (showSplash) {
     return (
