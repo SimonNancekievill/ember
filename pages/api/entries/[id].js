@@ -2,6 +2,7 @@ import dbConnect from "@/db/connect";
 import Entry from "@/db/models/Entry";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
+import { getToken } from "next-auth/jwt";
 
 export default async function handler(request, response) {
   const session = await getServerSession(request, response, authOptions);
@@ -17,6 +18,9 @@ export default async function handler(request, response) {
   const { id } = request.query;
   try {
     const entry = await Entry.findById(id);
+    if (!entry) {
+      return response.status(404).json({ status: "Entry not found." });
+    }
     if (entry.owner !== userId) {
       return response.status(403).json({ status: "Forbidden." });
     }
