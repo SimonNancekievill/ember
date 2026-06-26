@@ -11,6 +11,9 @@ import Calendar from "@/components/Calendar";
 import ViewToggle from "@/components/ViewToggle";
 import DayDetailSheet from "@/components/DayDetailSheet";
 import FilterButton from "@/components/FilterButton";
+import { useSession } from "next-auth/react";
+import LogIn from "../LogIn";
+import Image from "next/image";
 
 export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
@@ -19,6 +22,24 @@ export default function HomePage({ affirmation }) {
   const [isCalendarView, setIsCalendarView] = useState(false);
   const [isSelectedDay, setIsSelectedDay] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return <StyledPageWrapper />;
+  }
+  if (status !== "authenticated") {
+    return (
+      <StyledPageWrapper>
+        <Image
+          src={"/images/LOGO-Type.png"}
+          height={87}
+          width={256}
+          alt="ember type as a logo"
+        />
+        <LogIn />
+      </StyledPageWrapper>
+    );
+  }
 
   function handleToggle() {
     setIsCalendarView(!isCalendarView);
@@ -73,8 +94,17 @@ export default function HomePage({ affirmation }) {
 
   return (
     <StyledMainPageWrapper>
+      <Header>
+        <Image
+          src={"/images/LOGO.png"}
+          height={64}
+          width={64}
+          alt="ember e as a logo"
+        />
+        <LogIn />
+      </Header>
       <StyledTitelWrapper>
-        <StyledTitle>hi simon,</StyledTitle>
+        <StyledTitle>hi {session?.user?.name?.split(" ")[0]},</StyledTitle>
         <AffirmationDisplay affirmation={affirmation} />
       </StyledTitelWrapper>
       <EntryCounter entryCount={entryCount} />
@@ -157,6 +187,7 @@ const StyledTitelWrapper = styled.div`
 
 const StyledPageWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -192,4 +223,13 @@ const OptionsWrapper = styled.div`
   gap: 6px;
   padding: 24px 48px 0px 48px;
   height: auto;
+`;
+
+const Header = styled.div`
+  display: flex;
+  height: auto;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
 `;

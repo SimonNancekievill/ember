@@ -1,6 +1,7 @@
 import { SWRConfig } from "swr";
 import { Toaster } from "react-hot-toast";
 import GlobalStyle from "../styles";
+import { SessionProvider } from "next-auth/react";
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -15,7 +16,10 @@ const fetcher = async (url) => {
   }
   return res.json();
 };
-export default function App({ Component, pageProps }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   return (
     <>
       <GlobalStyle />
@@ -48,7 +52,9 @@ export default function App({ Component, pageProps }) {
         }}
       />
       <SWRConfig value={{ fetcher }}>
-        <Component {...pageProps} />
+        <SessionProvider session={session}>
+          <Component {...pageProps} />
+        </SessionProvider>
       </SWRConfig>
     </>
   );
