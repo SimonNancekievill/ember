@@ -2,6 +2,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Button from "@/components/Button";
 import styled from "styled-components";
 import Image from "next/image";
+import { FaGithub } from "react-icons/fa";
 
 export default function LogIn() {
   const { data: session } = useSession();
@@ -25,7 +26,10 @@ export default function LogIn() {
         <StyledTitle>sign in.</StyledTitle>
         <StyledSubtitle>time spent for you</StyledSubtitle>
       </StyledTitelWrapper>
-      <Button onClick={() => signIn("github")}>log in with github</Button>
+      <Button $variant="signIn" onClick={() => signIn("github")}>
+        <FaGithub size={25} />
+        log in with github
+      </Button>
     </StyledPageWrapper>
   );
 }

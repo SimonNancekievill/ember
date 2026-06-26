@@ -65,7 +65,7 @@ export default styled.button`
       color: var(--primary-white);
     `}
     ${(props) =>
-    props.$variant === "signIn" &&
+    props.$variant === "signOut" &&
     css`
       border: none;
       height: auto;
@@ -74,5 +74,15 @@ export default styled.button`
       background-color: transparent;
       color: var(--tertiary-orange);
       font-weight: 600;
+    `}
+
+    ${(props) =>
+    props.$variant === "signIn" &&
+    css`
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      align-items: center;
+      justify-content: center;
     `}
 `;
