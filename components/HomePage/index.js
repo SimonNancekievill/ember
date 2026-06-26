@@ -28,17 +28,7 @@ export default function HomePage({ affirmation }) {
     return <StyledPageWrapper />;
   }
   if (status !== "authenticated") {
-    return (
-      <StyledPageWrapper>
-        <Image
-          src={"/images/LOGO-Type.png"}
-          height={87}
-          width={256}
-          alt="ember type as a logo"
-        />
-        <LogIn />
-      </StyledPageWrapper>
-    );
+    return <LogIn />;
   }
 
   function handleToggle() {
