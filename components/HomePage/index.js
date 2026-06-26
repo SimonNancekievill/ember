@@ -24,6 +24,9 @@ export default function HomePage({ affirmation }) {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const { data: session, status } = useSession();
 
+  if (status === "loading") {
+    return <StyledPageWrapper />;
+  }
   if (status !== "authenticated") {
     return (
       <StyledPageWrapper>

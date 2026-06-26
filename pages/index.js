@@ -2,7 +2,6 @@ import SplashScreen from "@/components/SplashScreen";
 import HomePage from "@/components/HomePage";
 import { useState } from "react";
 import useAffiramtion from "@/hooks/useAffirmation";
-import LogIn from "@/components/LogIn";
 
 export default function Page() {
   const { affirmation } = useAffiramtion();

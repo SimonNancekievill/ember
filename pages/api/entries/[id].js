@@ -10,10 +10,16 @@ export default async function handler(request, response) {
     response.status(401).json({ status: "Not authorized" });
     return;
   }
+  const token = await getToken({ req: request });
+  const userId = token?.sub;
 
   await dbConnect();
   const { id } = request.query;
   try {
+    const entry = await Entry.findById(id);
+    if (entry.owner !== userId) {
+      return response.status(403).json({ status: "Forbidden." });
+    }
     if (request.method === "DELETE") {
       await Entry.findByIdAndDelete(id);
       response.status(200).json({ status: "Successfully deleted." });
