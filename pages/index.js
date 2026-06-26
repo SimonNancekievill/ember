@@ -3,6 +3,7 @@ import HomePage from "@/components/HomePage";
 import { useState, useEffect } from "react";
 import useAffirmation from "@/hooks/useAffirmation";
 import useOnboarding from "@/hooks/useOnboarding";
+import Onboarding from "@/components/Onboarding";
 
 export default function Page() {
   const { affirmation } = useAffirmation();
@@ -24,6 +25,9 @@ export default function Page() {
         affirmation={affirmation}
       />
     );
+  }
+  if (!hasOnboarded) {
+    return <Onboarding onComplete={completeOnboarding} />;
   }
   return <HomePage affirmation={affirmation} />;
 }
