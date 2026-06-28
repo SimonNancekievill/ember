@@ -1,51 +1,36 @@
 import styled from "styled-components";
+import Button from "@/components/Button";
 
 export default function ViewToggle({ onToggle, isCalendarView }) {
   return (
-    <ToggleWrapper>
-      <p>{isCalendarView ? "calendar" : "list"}</p>
-      <ToggleButton
-        onClick={onToggle}
-        $view={isCalendarView}
-        aria-label={
-          isCalendarView ? "Switch to list view" : "Switch to calendar view"
-        }
+    <ButtonWrapper>
+      <Button
+        $variant="view"
+        onClick={() => isCalendarView && onToggle()}
+        $active={!isCalendarView}
+        aria-label="Switch to list view"
       >
-        <Circle $isActive={isCalendarView} />
-      </ToggleButton>
-    </ToggleWrapper>
+        List
+      </Button>
+      <Button
+        $variant="view"
+        onClick={() => !isCalendarView && onToggle()}
+        $active={isCalendarView}
+        aria-label="Switch to calendar view"
+      >
+        Calendar
+      </Button>
+    </ButtonWrapper>
   );
 }
 
-const ToggleWrapper = styled.div`
+const ButtonWrapper = styled.div`
   width: 100%;
   height: 24px;
+  margin-bottom: 12px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 4px;
   align-items: center;
-  padding: 24px 48px 0px 48px;
-`;
-
-const ToggleButton = styled.button`
-  width: 40px;
-  height: 24px;
-  border-radius: 12px;
-  border: none;
-  background-color: ${(props) =>
-    props.$view ? "var(--secondary-grey)" : "var(--tertiary-grey)"};
-  padding: 0;
-  position: relative;
-`;
-
-const Circle = styled.div`
-  width: 20px;
-  height: 20px;
-  background-color: var(--primary-white);
-  border-radius: 50%;
-  position: absolute;
-  transform: ${(props) =>
-    props.$isActive ? "translateX(18px)" : "translateX(2px)"};
-  top: 2px;
-  transition: transform 0.3s ease;
 `;

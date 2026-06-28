@@ -2,12 +2,7 @@ import ActivityListItem from "../ActivityListItem";
 import styled from "styled-components";
 import { motion } from "motion/react";
 
-export default function ActivityList({
-  entries,
-  mutateCounter,
-  bgColor,
-  $compact,
-}) {
+export default function ActivityList({ entries, mutateCounter, $compact }) {
   if (entries.length === 0) {
     return (
       <StyledPageWrapper $compact={$compact}>
@@ -29,7 +24,6 @@ export default function ActivityList({
               category={entry.category}
               id={entry._id}
               mutateCounter={mutateCounter}
-              $bgColor={bgColor}
             />
           </motion.div>
         );

@@ -3,13 +3,19 @@ import { createGlobalStyle } from "styled-components";
 export default createGlobalStyle`
 
 :root {
-  --primary-bg: #FAF9F7;
+  --primary-bg: #F8F2E8;
   --overlay-bg: hsl(0 0% 12% / 0.4);
   --primary-white: #FFF;
   --secondary-white: #f5f5f5;
+  --tertinary-white: #FDFBF9;
   --primary-grey: #1E1E1E;
   --secondary-grey: #757575;
   --tertiary-grey: #B3B3B3;
+  --another-grey: #D9D9D9;
+
+  --primary-orange: #E27A48;
+  --secondary-orange: #DD6B41;
+  --tertiary-orange: #F4B8A0;
 
   --primary-button: #2C2C2C;
 

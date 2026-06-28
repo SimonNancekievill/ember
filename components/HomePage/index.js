@@ -11,6 +11,10 @@ import Calendar from "@/components/Calendar";
 import ViewToggle from "@/components/ViewToggle";
 import DayDetailSheet from "@/components/DayDetailSheet";
 import LoadingAnimation from "../LoadingAnimation";
+import FilterButton from "@/components/FilterButton";
+import { useSession } from "next-auth/react";
+import LogIn from "../LogIn";
+import Image from "next/image";
 
 export default function HomePage({ affirmation }) {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
@@ -18,6 +22,15 @@ export default function HomePage({ affirmation }) {
   const [isActive, setIsActive] = useState(false);
   const [isCalendarView, setIsCalendarView] = useState(false);
   const [isSelectedDay, setIsSelectedDay] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const { data: session, status } = useSession();
+
+  if (status === "loading") {
+    return <StyledPageWrapper />;
+  }
+  if (status !== "authenticated") {
+    return <LogIn />;
+  }
 
   function handleToggle() {
     setIsCalendarView(!isCalendarView);
@@ -97,11 +110,23 @@ export default function HomePage({ affirmation }) {
       </StyledPageWrapper>
     );
   }
+  const filteredEntries = entries.filter((entry) =>
+    selectedCategory === "all" ? true : entry.category === selectedCategory
+  );
 
   return (
     <StyledMainPageWrapper>
+      <Header>
+        <Image
+          src={"/images/LOGO.png"}
+          height={64}
+          width={64}
+          alt="ember e as a logo"
+        />
+        <LogIn />
+      </Header>
       <StyledTitelWrapper>
-        <StyledTitle>hi simon,</StyledTitle>
+        <StyledTitle>hi {session?.user?.name?.split(" ")[0]},</StyledTitle>
         <AffirmationDisplay affirmation={affirmation} />
       </StyledTitelWrapper>
       <EntryCounter entryCount={entryCount} />
@@ -130,9 +155,15 @@ export default function HomePage({ affirmation }) {
           </Button>
         </ButtonWrapper>
       )}
-      <ViewToggle onToggle={handleToggle} isCalendarView={isCalendarView} />
+      <OptionsWrapper>
+        <ViewToggle onToggle={handleToggle} isCalendarView={isCalendarView} />
+        <FilterButton
+          selectedCategory={selectedCategory}
+          onCategoryChange={setSelectedCategory}
+        />
+      </OptionsWrapper>
       <CalendarWrapper $visible={isCalendarView}>
-        <Calendar entries={entries} onDayClick={setIsSelectedDay} />
+        <Calendar entries={filteredEntries} onDayClick={setIsSelectedDay} />
       </CalendarWrapper>
       {isSelectedDay && (
         <DayDetailSheet
@@ -150,11 +181,7 @@ export default function HomePage({ affirmation }) {
         />
       )}
       <StyledListWrapper $visible={isCalendarView}>
-        <ActivityList
-          entries={entries}
-          mutateCounter={mutateCounter}
-          bgColor={isCalendarView}
-        />
+        <ActivityList entries={filteredEntries} mutateCounter={mutateCounter} />
       </StyledListWrapper>
     </StyledMainPageWrapper>
   );
@@ -181,6 +208,7 @@ const StyledTitelWrapper = styled.div`
 
 const StyledPageWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -205,4 +233,23 @@ const StyledMainPageWrapper = styled.div`
       opacity: 1;
     }
   }
+`;
+
+const OptionsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 24px 48px 0px 48px;
+  height: auto;
+`;
+
+const Header = styled.div`
+  display: flex;
+  height: auto;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
 `;

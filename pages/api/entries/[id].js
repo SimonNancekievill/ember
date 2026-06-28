@@ -1,10 +1,29 @@
 import dbConnect from "@/db/connect";
 import Entry from "@/db/models/Entry";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
+import { getToken } from "next-auth/jwt";
 
 export default async function handler(request, response) {
+  const session = await getServerSession(request, response, authOptions);
+
+  if (!session) {
+    response.status(401).json({ status: "Not authorized" });
+    return;
+  }
+  const token = await getToken({ req: request });
+  const userId = token?.sub;
+
   await dbConnect();
   const { id } = request.query;
   try {
+    const entry = await Entry.findById(id);
+    if (!entry) {
+      return response.status(404).json({ status: "Entry not found." });
+    }
+    if (entry.owner !== userId) {
+      return response.status(403).json({ status: "Forbidden." });
+    }
     if (request.method === "DELETE") {
       await Entry.findByIdAndDelete(id);
       response.status(200).json({ status: "Successfully deleted." });

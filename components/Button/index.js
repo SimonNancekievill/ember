@@ -3,7 +3,8 @@ import styled, { css } from "styled-components";
 export default styled.button`
   cursor: pointer;
   font-size: 16px;
-  background-color: var(--primary-button);
+  background-color: var(--primary-orange);
+  border: none;
   width: 100%;
   height: 40px;
   border-radius: 8px;
@@ -13,8 +14,8 @@ export default styled.button`
     props.$variant === "secondary" &&
     css`
       background-color: transparent;
-      border: 1px solid var(--primary-button);
-      color: var(--primary-button);
+      border: 1px solid var(--primary-orange);
+      color: var(--primary-orange);
     `}
 
   ${(props) =>
@@ -37,5 +38,51 @@ export default styled.button`
       background-color: transparent;
       border: none;
       color: var(--primary-grey);
+    `}
+
+    ${(props) =>
+    props.$variant === "options" &&
+    css`
+      border-radius: 8px;
+      height: auto;
+      width: auto;
+      padding: 4px 12px;
+      background-color: transparent;
+      border: solid 2px;
+      border-color: ${(props) =>
+        props.$active ? "var(--primary-orange)" : "var(--tertiary-orange)"};
+      color: var(--primary-grey);
+    `}
+    ${(props) =>
+    props.$variant === "view" &&
+    css`
+      border-radius: 8px;
+      height: auto;
+      width: auto;
+      padding: 4px 12px;
+      background-color: ${(props) =>
+        props.$active ? "var(--primary-orange)" : "var(--tertiary-orange)"};
+      color: var(--primary-white);
+    `}
+    ${(props) =>
+    props.$variant === "signOut" &&
+    css`
+      border: none;
+      height: auto;
+      width: auto;
+      text-decoration: underline;
+      background-color: transparent;
+      color: var(--tertiary-orange);
+      font-weight: 600;
+    `}
+
+    ${(props) =>
+    props.$variant === "signIn" &&
+    css`
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      align-items: center;
+      justify-content: center;
     `}
 `;
