@@ -68,10 +68,19 @@ export default function HomePage({ affirmation }) {
   if (isLoading)
     return (
       <StyledMainPageWrapper>
-        <StyledTitelWrapper>
-          <StyledTitle>hi simon,</StyledTitle>
+        <Header>
+          <Image
+            src={"/images/LOGO.png"}
+            height={64}
+            width={64}
+            alt="ember e as a logo"
+          />
+          <LogIn />
+        </Header>
+        <StyledTitleWrapper>
+          <StyledTitle>hi {session?.user?.name?.split(" ")[0]},</StyledTitle>
           <AffirmationDisplay affirmation={affirmation} />
-        </StyledTitelWrapper>
+        </StyledTitleWrapper>
         <EntryCounter entryCount={entryCount} />
 
         {isActive ? (
@@ -125,10 +134,10 @@ export default function HomePage({ affirmation }) {
         />
         <LogIn />
       </Header>
-      <StyledTitelWrapper>
+      <StyledTitleWrapper>
         <StyledTitle>hi {session?.user?.name?.split(" ")[0]},</StyledTitle>
         <AffirmationDisplay affirmation={affirmation} />
-      </StyledTitelWrapper>
+      </StyledTitleWrapper>
       <EntryCounter entryCount={entryCount} />
       {isActive ? (
         <>
@@ -202,7 +211,7 @@ const StyledSubtitle = styled.h2`
   font-weight: 400;
 `;
 
-const StyledTitelWrapper = styled.div`
+const StyledTitleWrapper = styled.div`
   padding: 24px 48px;
 `;
 
