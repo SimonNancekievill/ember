@@ -8,20 +8,14 @@ import Onboarding from "@/components/Onboarding";
 export default function Page() {
   const { affirmation } = useAffirmation();
   const { hasOnboarded, completedOnboarding, isReady } = useOnboarding();
-  const [showSplash, setShowSplash] = useState(true);
-
-  useEffect(() => {
-    if (isReady) {
-      setShowSplash(hasOnboarded);
-    }
-  }, [isReady]);
+  const [splashCompleted, setSplashCompleted] = useState(false);
 
   if (!isReady) return null;
 
-  if (showSplash) {
+  if (splashCompleted) {
     return (
       <SplashScreen
-        onComplete={() => setShowSplash(false)}
+        onComplete={() => setSplashCompleted(true)}
         affirmation={affirmation}
       />
     );

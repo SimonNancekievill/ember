@@ -26,10 +26,10 @@ export default function LogIn() {
         height={250}
         alt="Ember E as logo"
       />
-      <StyledTitelWrapper>
+      <StyledTitleWrapper>
         <StyledTitle>sign in.</StyledTitle>
         <StyledSubtitle>to spend time for you</StyledSubtitle>
-      </StyledTitelWrapper>
+      </StyledTitleWrapper>
       <Button $variant="signIn" onClick={() => signIn("github")}>
         <FaGithub size={25} />
         log in with github
@@ -44,7 +44,10 @@ export default function LogIn() {
             signIn("credentials", { username, password, callbackUrl: "/" });
           }}
         >
-          <StyledActivityLabel htmlFor="username">
+          <StyledActivityLabel
+            htmlFor="username"
+            aria-label="label for username inputfield"
+          >
             <StyledTextInput
               id="username"
               name="username"
@@ -54,7 +57,10 @@ export default function LogIn() {
               required
             />
           </StyledActivityLabel>
-          <StyledActivityLabel htmlFor="password">
+          <StyledActivityLabel
+            htmlFor="password"
+            aria-label="label for password inputfield"
+          >
             <StyledTextInput
               id="password"
               name="password"
@@ -64,13 +70,7 @@ export default function LogIn() {
               required
             />
           </StyledActivityLabel>
-          <Button
-            $variant="logIn"
-            type="submit"
-            onClick={() =>
-              signIn("credentials", { username, password, callbackUrl: "/" })
-            }
-          >
+          <Button $variant="logIn" type="submit">
             submit
           </Button>
         </StyledForm>
@@ -79,7 +79,7 @@ export default function LogIn() {
   );
 }
 
-const StyledTitelWrapper = styled.div`
+const StyledTitleWrapper = styled.div`
   padding: 24px 0px;
 `;
 const StyledPageWrapper = styled.div`

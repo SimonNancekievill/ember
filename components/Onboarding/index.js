@@ -38,8 +38,8 @@ export default function Onboarding({ onComplete }) {
 
   return (
     <StyledPageWrapper>
-      <LeftZone onClick={goBack} />
-      <RightZone onClick={advance} />
+      <LeftZone onClick={goBack} aria-label="previous slide" />
+      <RightZone onClick={advance} aria-label="next slide" />
       <Bubble $position={slides[currentSlide].bubble} />
       <StyledTitle>{slides[currentSlide].title}</StyledTitle>
       <StyledBody>{slides[currentSlide].body}</StyledBody>
@@ -138,20 +138,26 @@ const SkipButton = styled(Button)`
   z-index: 10;
 `;
 
-const LeftZone = styled.div`
+const LeftZone = styled.button`
   position: absolute;
   top: 0;
   left: 0;
   width: 50%;
   height: 100%;
   z-index: 1;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
 `;
 
-const RightZone = styled.div`
+const RightZone = styled.button`
   position: absolute;
   top: 0;
   right: 0;
   width: 50%;
   height: 100%;
   z-index: 1;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
 `;
