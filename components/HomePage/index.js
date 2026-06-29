@@ -10,6 +10,7 @@ import EntryCounter from "@/components/EntryCounter";
 import Calendar from "@/components/Calendar";
 import ViewToggle from "@/components/ViewToggle";
 import DayDetailSheet from "@/components/DayDetailSheet";
+import LoadingAnimation from "../LoadingAnimation";
 import FilterButton from "@/components/FilterButton";
 import LogIn from "../LogIn";
 import Image from "next/image";
@@ -82,12 +83,11 @@ export default function HomePage({
         />
         <LogIn />
       </Header>
-      <StyledTitelWrapper>
+      <StyledTitleWrapper>
         <StyledTitle>hi {session?.user?.name?.split(" ")[0]},</StyledTitle>
         <AffirmationDisplay affirmation={affirmation} />
-      </StyledTitelWrapper>
+      </StyledTitleWrapper>
       <EntryCounter entryCount={entryCount} />
-
       {isActive ? (
         <>
           <ButtonWrapper>
@@ -160,7 +160,7 @@ const StyledSubtitle = styled.h2`
   font-weight: 400;
 `;
 
-const StyledTitelWrapper = styled.div`
+const StyledTitleWrapper = styled.div`
   padding: 24px 48px;
 `;
 
@@ -180,9 +180,8 @@ const CalendarWrapper = styled.div`
 const StyledListWrapper = styled.div`
   display: ${(props) => (props.$visible ? "none" : "block")};
 `;
-
 const StyledMainPageWrapper = styled.div`
-  animation: fadeIn 0.5s ease-in;
+  animation: fadeIn 0.75s ease-in;
 
   @keyframes fadeIn {
     from {

@@ -67,13 +67,12 @@ export default styled.button`
     ${(props) =>
     props.$variant === "signOut" &&
     css`
-      border: none;
+      background-color: transparent;
+      border: 1px solid var(--primary-orange);
+      color: var(--primary-orange);
+      padding: 4px 12px;
       height: auto;
       width: auto;
-      text-decoration: underline;
-      background-color: transparent;
-      color: var(--tertiary-orange);
-      font-weight: 600;
     `}
 
     ${(props) =>

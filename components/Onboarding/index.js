@@ -1,22 +1,35 @@
 import { useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Button from "@/components/Button";
+import { motion } from "motion/react";
 
 const slides = [
   {
     title: "welcome to ember",
     body: "this is a quiet place to notice  when you're taking care of yourself. no streaks to chase. no guilt if you  miss a day. just a simple way to  see that you showed up for yourself.",
-    bubble: "top-right",
+    bubble: {
+      x: "calc(100vw - 200px)",
+      y: -100,
+      borderRadius: "60% 40% 70% 30% / 50% 60% 40% 50%",
+    },
   },
   {
     title: "log what you do",
     body: "exercise. meditation. cleaning your  room. calling a friend. anything that  feels like choosing yourself. pick a category. give it a name.  that's it.",
-    bubble: "bottom-left",
+    bubble: {
+      x: -200,
+      y: "calc(100vh - 200px)",
+      borderRadius: "40% 60% 30% 70% / 60% 40% 50% 50%",
+    },
   },
   {
     title: "times you chose yourself",
     body: "every activity adds to your counter.  not to pressure you. just to remind  you that these moments matter.",
-    bubble: "top-left",
+    bubble: {
+      x: -50,
+      y: -100,
+      borderRadius: "40% 60% 30% 70% / 60% 40% 50% 50%",
+    },
   },
 ];
 
@@ -40,7 +53,17 @@ export default function Onboarding({ onComplete }) {
     <StyledPageWrapper>
       <LeftZone onClick={goBack} aria-label="previous slide" />
       <RightZone onClick={advance} aria-label="next slide" />
-      <Bubble $position={slides[currentSlide].bubble} />
+      <Bubble
+        animate={{
+          x: slides[currentSlide].bubble.x,
+          y: slides[currentSlide].bubble.y,
+          borderRadius: slides[currentSlide].bubble.borderRadius,
+        }}
+        transition={{
+          duration: 0.5,
+          ease: "easeInOut",
+        }}
+      />
       <StyledTitle>{slides[currentSlide].title}</StyledTitle>
       <StyledBody>{slides[currentSlide].body}</StyledBody>
       <Dots>
@@ -74,12 +97,14 @@ const StyledPageWrapper = styled.div`
 const StyledTitle = styled.h1`
   font-weight: 600;
   font-size: 48px;
+  z-index: 10;
 `;
 
 const StyledBody = styled.p`
   color: var(--tertiary-grey);
   font-size: 24px;
   font-weight: 400;
+  z-index: 10;
 `;
 
 const Dots = styled.div`
@@ -99,35 +124,15 @@ const Dot = styled.div`
   transition: all 0.8s ease;
 `;
 
-const Bubble = styled.div`
+const Bubble = styled(motion.div)`
   position: fixed;
+  top: 0;
+  left: 0;
   width: 350px;
   height: 350px;
   background-color: var(--primary-orange);
-  transition: all 0.8s ease;
-
-  ${(props) =>
-    props.$position === "top-right" &&
-    css`
-      top: -100px;
-      right: -150px;
-      border-radius: 60% 40% 70% 30% / 50% 60% 40% 50%;
-    `};
-  ${(props) =>
-    props.$position === "bottom-left" &&
-    css`
-      bottom: -150px;
-      left: -200px;
-      border-radius: 40% 60% 30% 70% / 60% 40% 50% 50%;
-    `};
-  ${(props) =>
-    props.$position === "top-left" &&
-    css`
-      top: -100px;
-      left: -50px;
-      border-radius: 40% 60% 30% 70% / 60% 40% 50% 50%;
-    `};
 `;
+
 const SkipButton = styled(Button)`
   position: absolute;
   bottom: 48px;
