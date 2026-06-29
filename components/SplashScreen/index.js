@@ -92,7 +92,7 @@ const HeaderWrapper = styled.div`
 
 const BubbleBottom = styled.div`
   position: absolute;
-  bottom: -450px;
+  bottom: -550px;
   left: -50px;
   width: 350px;
   height: 350px;
@@ -101,7 +101,7 @@ const BubbleBottom = styled.div`
 `;
 const BubbleTop = styled.div`
   position: absolute;
-  top: -450px;
+  top: -550px;
   right: -50px;
   width: 350px;
   height: 350px;
