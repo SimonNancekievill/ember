@@ -48,10 +48,11 @@ export default styled.button`
       width: auto;
       padding: 4px 12px;
       background-color: transparent;
-      border: solid 2px;
+      border: solid 1px;
       border-color: ${(props) =>
-        props.$active ? "var(--primary-orange)" : "var(--tertiary-orange)"};
-      color: var(--primary-grey);
+        props.$active ? "var(--primary-grey)" : "var(--tertiary-grey)"};
+      color: ${(props) =>
+        props.$active ? "var(--primary-grey)" : "var(--tertiary-grey)"};
     `}
     ${(props) =>
     props.$variant === "view" &&
@@ -68,8 +69,8 @@ export default styled.button`
     props.$variant === "signOut" &&
     css`
       background-color: transparent;
-      border: 1px solid var(--primary-orange);
-      color: var(--primary-orange);
+      border: 1px solid var(--secondary-grey);
+      color: var(--secondary-grey);
       padding: 4px 12px;
       height: auto;
       width: auto;
