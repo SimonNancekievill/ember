@@ -20,11 +20,11 @@ export default createGlobalStyle`
   --primary-button: #2C2C2C;
 
 
-  --movement-yellow: #E8C4A0;
-  --selfcare-mint: #B8D4C4;
-  --home-indigo: #B8C9E6;
-  --social-pink: #E6C4C4;
-  --other-grey: #B8B0A8;
+  --movement-yellow: #E0A560;
+  --selfcare-mint: #2B9B7E;
+  --home-indigo: #7BA3D1;
+  --social-pink: #D97B88;
+  --other-grey: #B8A899;
 
 
 
