@@ -20,16 +20,18 @@ export default function LogIn() {
   }
   return (
     <StyledPageWrapper>
-      <Image
-        src="/images/Ember-E.svg"
-        width={250}
-        height={250}
-        alt="Ember E as logo"
-      />
-      <StyledTitleWrapper>
-        <StyledTitle>sign in.</StyledTitle>
-        <StyledSubtitle>to spend time for you</StyledSubtitle>
-      </StyledTitleWrapper>
+      <HeaderWrapper>
+        <Image
+          src="/images/Ember-E.svg"
+          width={65}
+          height={65}
+          alt="Ember E as logo"
+        />
+        <StyledTitleWrapper>
+          <StyledTitle>sign in.</StyledTitle>
+          <StyledSubtitle>spend time with yourself</StyledSubtitle>
+        </StyledTitleWrapper>
+      </HeaderWrapper>
       <Button $variant="signIn" onClick={() => signIn("github")}>
         <FaGithub size={25} />
         log in with github
@@ -79,8 +81,19 @@ export default function LogIn() {
   );
 }
 
-const StyledTitleWrapper = styled.div`
+const HeaderWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
   padding: 24px 0px;
+`;
+
+const StyledTitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 const StyledPageWrapper = styled.div`
   display: flex;
@@ -97,7 +110,7 @@ const StyledTitle = styled.h1`
   font-size: 48px;
 `;
 const StyledSubtitle = styled.h2`
-  color: var(--tertiary-grey);
+  color: var(--secondary-grey);
   font-weight: 400;
 `;
 const StyledForm = styled.form`
