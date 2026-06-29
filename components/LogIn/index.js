@@ -70,7 +70,7 @@ export default function LogIn() {
               required
             />
           </StyledActivityLabel>
-          <Button $variant="logIn" type="submit">
+          <Button $variant="signIn" type="submit">
             submit
           </Button>
         </StyledForm>

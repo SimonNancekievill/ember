@@ -12,25 +12,21 @@ import ViewToggle from "@/components/ViewToggle";
 import DayDetailSheet from "@/components/DayDetailSheet";
 import LoadingAnimation from "../LoadingAnimation";
 import FilterButton from "@/components/FilterButton";
-import { useSession } from "next-auth/react";
 import LogIn from "../LogIn";
 import Image from "next/image";
 
-export default function HomePage({ affirmation }) {
-  const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
+export default function HomePage({
+  affirmation,
+  entries,
+  error,
+  mutate,
+  session,
+}) {
   const { data: entryCount, mutate: mutateCounter } = useSWR("/api/counter");
   const [isActive, setIsActive] = useState(false);
   const [isCalendarView, setIsCalendarView] = useState(false);
   const [isSelectedDay, setIsSelectedDay] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const { data: session, status } = useSession();
-
-  if (status === "loading") {
-    return <StyledPageWrapper />;
-  }
-  if (status !== "authenticated") {
-    return <LogIn />;
-  }
 
   function handleToggle() {
     setIsCalendarView(!isCalendarView);
@@ -64,53 +60,6 @@ export default function HomePage({ affirmation }) {
       toast.error("Something went wrong, please try again.");
     }
   }
-
-  if (isLoading)
-    return (
-      <StyledMainPageWrapper>
-        <Header>
-          <Image
-            src={"/images/LOGO.png"}
-            height={64}
-            width={64}
-            alt="ember e as a logo"
-          />
-          <LogIn />
-        </Header>
-        <StyledTitleWrapper>
-          <StyledTitle>hi {session?.user?.name?.split(" ")[0]},</StyledTitle>
-          <AffirmationDisplay affirmation={affirmation} />
-        </StyledTitleWrapper>
-        <EntryCounter entryCount={entryCount} />
-
-        {isActive ? (
-          <>
-            <ButtonWrapper>
-              <Button
-                type="button"
-                aria-label="Close Activity Form"
-                $variant="cancel"
-                onClick={() => setIsActive(!isActive)}
-              >
-                Close
-              </Button>
-            </ButtonWrapper>
-            <Form onSubmit={handleSubmit} />
-          </>
-        ) : (
-          <ButtonWrapper>
-            <Button
-              type="button"
-              aria-label="Open Activity Form"
-              onClick={() => setIsActive(!isActive)}
-            >
-              Add new
-            </Button>
-          </ButtonWrapper>
-        )}
-        <LoadingAnimation />
-      </StyledMainPageWrapper>
-    );
 
   if (!entries || error) {
     return (
