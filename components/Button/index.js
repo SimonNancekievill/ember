@@ -6,7 +6,7 @@ export default styled.button`
   background-color: var(--primary-orange);
   border: none;
   width: 100%;
-  height: 40px;
+  height: 48px;
   border-radius: 8px;
   color: var(--secondary-white);
 

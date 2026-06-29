@@ -1,7 +1,13 @@
 import styled from "styled-components";
 import Button from "../Button";
 
-export default function Form({ onSubmit, isEditMode, name, category }) {
+export default function Form({
+  onSubmit,
+  isEditMode,
+  name,
+  category,
+  onHandleActive,
+}) {
   return (
     <FormWrapper $isEditMode={isEditMode}>
       <StyledForm onSubmit={onSubmit} $isEditMode={isEditMode}>
@@ -41,7 +47,17 @@ export default function Form({ onSubmit, isEditMode, name, category }) {
         {isEditMode ? (
           <Button>save & close</Button>
         ) : (
-          <Button>that&apos;s choosing myself </Button>
+          <ButtonWrapper>
+            <Button>that&apos;s choosing myself </Button>
+            <Button
+              type="button"
+              aria-label="Close Activity Form"
+              $variant="secondary"
+              onClick={onHandleActive}
+            >
+              Close
+            </Button>
+          </ButtonWrapper>
         )}
       </StyledForm>
     </FormWrapper>
@@ -57,7 +73,7 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: ${(props) => (props.$isEditMode ? "auto" : "276px")};
+  height: auto;
   width: 100%;
   gap: 24px;
   border-radius: 8px;
@@ -94,4 +110,11 @@ const StyledActivityLabel = styled.label`
   gap: 8px;
   width: 100%;
   flex-direction: column;
+`;
+const ButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
 `;

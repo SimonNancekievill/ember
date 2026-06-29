@@ -84,7 +84,7 @@ export default function LogIn() {
 const HeaderWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 8px;
+  gap: 16px;
   width: 100%;
   align-items: center;
   justify-content: center;
