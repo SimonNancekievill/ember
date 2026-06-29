@@ -15,8 +15,7 @@ import { useSession } from "next-auth/react";
 import LogIn from "../LogIn";
 import Image from "next/image";
 
-export default function HomePage({ affirmation }) {
-  const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
+export default function HomePage({ affirmation, entries, error, mutate }) {
   const { data: entryCount, mutate: mutateCounter } = useSWR("/api/counter");
   const [isActive, setIsActive] = useState(false);
   const [isCalendarView, setIsCalendarView] = useState(false);
@@ -63,13 +62,6 @@ export default function HomePage({ affirmation }) {
       toast.error("Something went wrong, please try again.");
     }
   }
-
-  if (isLoading)
-    return (
-      <StyledPageWrapper>
-        <StyledSubtitle>sorting your activities…</StyledSubtitle>
-      </StyledPageWrapper>
-    );
 
   if (!entries || error) {
     return (
