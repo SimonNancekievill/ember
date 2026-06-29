@@ -28,7 +28,7 @@ export default function Page() {
     return <LogIn />;
   }
 
-  if (isLoading && !splashCompleted) {
+  if (isLoading || !splashCompleted) {
     return (
       <SplashScreen
         onComplete={() => setSplashCompleted(true)}
