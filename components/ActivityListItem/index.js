@@ -30,7 +30,7 @@ export default function ActivityListItem({
       case "social":
         return "var(--social-pink)";
       default:
-        return "var(--tertiary-grey)";
+        return "var(--other-grey)";
     }
   }
 

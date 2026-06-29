@@ -10,7 +10,6 @@ import EntryCounter from "@/components/EntryCounter";
 import Calendar from "@/components/Calendar";
 import ViewToggle from "@/components/ViewToggle";
 import DayDetailSheet from "@/components/DayDetailSheet";
-import LoadingAnimation from "../LoadingAnimation";
 import FilterButton from "@/components/FilterButton";
 import LogIn from "../LogIn";
 import Image from "next/image";
@@ -30,6 +29,10 @@ export default function HomePage({
 
   function handleToggle() {
     setIsCalendarView(!isCalendarView);
+  }
+
+  function handleActive() {
+    setIsActive(!isActive);
   }
 
   async function handleSubmit(event) {
@@ -77,8 +80,8 @@ export default function HomePage({
       <Header>
         <Image
           src={"/images/LOGO.png"}
-          height={64}
-          width={64}
+          height={45}
+          width={45}
           alt="ember e as a logo"
         />
         <LogIn />
@@ -89,19 +92,7 @@ export default function HomePage({
       </StyledTitleWrapper>
       <EntryCounter entryCount={entryCount} />
       {isActive ? (
-        <>
-          <ButtonWrapper>
-            <Button
-              type="button"
-              aria-label="Close Activity Form"
-              $variant="cancel"
-              onClick={() => setIsActive(!isActive)}
-            >
-              Close
-            </Button>
-          </ButtonWrapper>
-          <Form onSubmit={handleSubmit} />
-        </>
+        <Form onSubmit={handleSubmit} onHandleActive={handleActive} />
       ) : (
         <ButtonWrapper>
           <Button
@@ -209,5 +200,5 @@ const Header = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 24px;
+  padding: 24px 38px;
 `;
