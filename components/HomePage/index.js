@@ -11,35 +11,21 @@ import Calendar from "@/components/Calendar";
 import ViewToggle from "@/components/ViewToggle";
 import DayDetailSheet from "@/components/DayDetailSheet";
 import FilterButton from "@/components/FilterButton";
-import { useSession } from "next-auth/react";
 import LogIn from "../LogIn";
 import Image from "next/image";
 
-export default function HomePage({ affirmation }) {
-  const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
+export default function HomePage({
+  affirmation,
+  entries,
+  error,
+  mutate,
+  session,
+}) {
   const { data: entryCount, mutate: mutateCounter } = useSWR("/api/counter");
   const [isActive, setIsActive] = useState(false);
   const [isCalendarView, setIsCalendarView] = useState(false);
   const [isSelectedDay, setIsSelectedDay] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const { data: session, status } = useSession();
-
-  if (status === "loading") {
-    return <StyledPageWrapper />;
-  }
-  if (status !== "authenticated") {
-    return (
-      <StyledPageWrapper>
-        <Image
-          src={"/images/LOGO-Type.png"}
-          height={87}
-          width={256}
-          alt="ember type as a logo"
-        />
-        <LogIn />
-      </StyledPageWrapper>
-    );
-  }
 
   function handleToggle() {
     setIsCalendarView(!isCalendarView);
@@ -73,13 +59,6 @@ export default function HomePage({ affirmation }) {
       toast.error("Something went wrong, please try again.");
     }
   }
-
-  if (isLoading)
-    return (
-      <StyledPageWrapper>
-        <StyledSubtitle>sorting your activities…</StyledSubtitle>
-      </StyledPageWrapper>
-    );
 
   if (!entries || error) {
     return (
