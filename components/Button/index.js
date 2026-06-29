@@ -14,8 +14,8 @@ export default styled.button`
     props.$variant === "secondary" &&
     css`
       background-color: transparent;
-      border: 1px solid var(--primary-button);
-      color: var(--primary-button);
+      border: 1px solid var(--primary-orange);
+      color: var(--primary-orange);
     `}
 
   ${(props) =>
@@ -65,14 +65,23 @@ export default styled.button`
       color: var(--primary-white);
     `}
     ${(props) =>
-    props.$variant === "signIn" &&
+    props.$variant === "signOut" &&
     css`
-      border: none;
+      background-color: transparent;
+      border: 1px solid var(--primary-orange);
+      color: var(--primary-orange);
+      padding: 4px 12px;
       height: auto;
       width: auto;
-      text-decoration: underline;
-      background-color: transparent;
-      color: var(--tertiary-orange);
-      font-weight: 600;
+    `}
+
+    ${(props) =>
+    props.$variant === "signIn" &&
+    css`
+      display: flex;
+      flex-direction: row;
+      gap: 15px;
+      align-items: center;
+      justify-content: center;
     `}
 `;

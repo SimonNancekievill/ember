@@ -151,8 +151,8 @@ const DotsContainer = styled.div`
 `;
 
 const Dot = styled.div`
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
   background-color: ${(props) => props.$color};
   flex-shrink: 0;

@@ -10,36 +10,23 @@ import EntryCounter from "@/components/EntryCounter";
 import Calendar from "@/components/Calendar";
 import ViewToggle from "@/components/ViewToggle";
 import DayDetailSheet from "@/components/DayDetailSheet";
+import LoadingAnimation from "../LoadingAnimation";
 import FilterButton from "@/components/FilterButton";
-import { useSession } from "next-auth/react";
 import LogIn from "../LogIn";
 import Image from "next/image";
 
-export default function HomePage({ affirmation }) {
-  const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
+export default function HomePage({
+  affirmation,
+  entries,
+  error,
+  mutate,
+  session,
+}) {
   const { data: entryCount, mutate: mutateCounter } = useSWR("/api/counter");
   const [isActive, setIsActive] = useState(false);
   const [isCalendarView, setIsCalendarView] = useState(false);
   const [isSelectedDay, setIsSelectedDay] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const { data: session, status } = useSession();
-
-  if (status === "loading") {
-    return <StyledPageWrapper />;
-  }
-  if (status !== "authenticated") {
-    return (
-      <StyledPageWrapper>
-        <Image
-          src={"/images/LOGO-Type.png"}
-          height={87}
-          width={256}
-          alt="ember type as a logo"
-        />
-        <LogIn />
-      </StyledPageWrapper>
-    );
-  }
 
   function handleToggle() {
     setIsCalendarView(!isCalendarView);
@@ -74,13 +61,6 @@ export default function HomePage({ affirmation }) {
     }
   }
 
-  if (isLoading)
-    return (
-      <StyledPageWrapper>
-        <StyledSubtitle>sorting your activities…</StyledSubtitle>
-      </StyledPageWrapper>
-    );
-
   if (!entries || error) {
     return (
       <StyledPageWrapper>
@@ -103,12 +83,11 @@ export default function HomePage({ affirmation }) {
         />
         <LogIn />
       </Header>
-      <StyledTitelWrapper>
+      <StyledTitleWrapper>
         <StyledTitle>hi {session?.user?.name?.split(" ")[0]},</StyledTitle>
         <AffirmationDisplay affirmation={affirmation} />
-      </StyledTitelWrapper>
+      </StyledTitleWrapper>
       <EntryCounter entryCount={entryCount} />
-
       {isActive ? (
         <>
           <ButtonWrapper>
@@ -181,7 +160,7 @@ const StyledSubtitle = styled.h2`
   font-weight: 400;
 `;
 
-const StyledTitelWrapper = styled.div`
+const StyledTitleWrapper = styled.div`
   padding: 24px 48px;
 `;
 
@@ -201,9 +180,8 @@ const CalendarWrapper = styled.div`
 const StyledListWrapper = styled.div`
   display: ${(props) => (props.$visible ? "none" : "block")};
 `;
-
 const StyledMainPageWrapper = styled.div`
-  animation: fadeIn 0.5s ease-in;
+  animation: fadeIn 0.75s ease-in;
 
   @keyframes fadeIn {
     from {
