@@ -11,14 +11,14 @@ import LogIn from "@/components/LogIn";
 export default function Page() {
   const { data: entries, isLoading, error, mutate } = useSWR("/api/entries");
   const { affirmation } = useAffirmation();
-  const { hasOnboarded, completedOnboarding, isReady } = useOnboarding();
+  const { hasOnboarded, completeOnboarding, isReady } = useOnboarding();
   const [splashCompleted, setSplashCompleted] = useState(false);
   const { data: session, status } = useSession();
 
   if (!isReady) return null;
 
   if (!hasOnboarded) {
-    return <Onboarding onComplete={completedOnboarding} />;
+    return <Onboarding onComplete={completeOnboarding} />;
   }
 
   if (status === "loading") {

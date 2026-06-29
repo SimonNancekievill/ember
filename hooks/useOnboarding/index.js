@@ -11,10 +11,10 @@ export default function useOnboarding() {
     setIsReady(true);
   }, []);
 
-  function completedOnboarding() {
+  function completeOnboarding() {
     localStorage.setItem(ONBOARDING_KEY, "true");
     setHasOnboarded(true);
   }
 
-  return { hasOnboarded, completedOnboarding, isReady };
+  return { hasOnboarded, completeOnboarding, isReady };
 }
